@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  server:
+    container_name: recycling-server
+    build: ./recycling-server
+    image: zhzhang2012/cs121-recycling-server:v1
+    ports:
+      - 3000:3000
+    volumes:
+      - ./recycling-server:/srv/server
+
+  db:
+    container_name: db-mysql
+    image: mysql

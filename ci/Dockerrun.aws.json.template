@@ -1,0 +1,23 @@
+{
+  "AWSEBDockerrunVersion": "2",
+  "containerDefinitions": [
+    {
+      "name": "server",
+      "image": "zhzhang2012/cs121-recycling-server:<TAG>",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 3000
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "awseb-logs-server",
+          "containerPath": "/srv/server/log"
+        }
+      ]
+    }
+  ]
+}
