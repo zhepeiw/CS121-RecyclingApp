@@ -1,9 +1,4 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
+# using mysql2 as database
 default: &default
   adapter: mysql2
   pool: 5
@@ -11,21 +6,25 @@ default: &default
 
 development:
   <<: *default
-  host: db
-  username: root
-  password: recycling-app-dev-MySQL-SECRET
   database: recycling-app-dev
+  host: db
+  username: dbdevmaster
+  password: dbdevmaster
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  database: circle_test
   host: localhost
   user: ubuntu
   password:
-  database: circle_test
 
 production:
   <<: *default
-  database: recycling-app-prod
+  database: <%= ENV['MYSQL_RDS_DB_PROD_NAME'] %>
+  host: <%= ENV['MYSQL_RDS_DB_PROD_HOST'] %>
+  user: <%= ENV['MYSQL_RDS_DB_PROD_USER'] %>
+  password: <%= ENV['MYSQL_RDS_DB_PROD_PASSWORD'] %>
+  port: <%= ENV['MYSQL_RDS_DB_PROD_PORT'] %>
