@@ -10,7 +10,7 @@ set -e
 SHA1=$1
 EB_BUCKET=cs121-recycling-server-core
 DOCKERRUN_FILE=$SHA1-Dockerrun.aws.json
-APPLICATION_NAME=cs121-recycling
+APPLICATION_NAME=cs121-recycling-app
 ENVIRONMENT_NAME=cs121-recycling-server-prod
 
 # Construct production configuration files from

@@ -18,8 +18,8 @@ MAINTAINER Tony Zhang <zhzhangtony@gmail.com>
 # If you want the environment variable to be applied
 # to only one environment, please do not add environment
 # variabled here.
-ENV AWS_ACCESS_KEY_ID "AKIAJBDITNQWN62JV3LQ"
-ENV AWS_SECRET_ACCESS_KEY "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"
+ENV AWS_ACCESS_KEY_ID "AKIAJFFNAYJE6234AUVQ"
+ENV AWS_SECRET_ACCESS_KEY "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"
 
 # Install global dependencies
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
