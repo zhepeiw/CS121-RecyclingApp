@@ -3,6 +3,8 @@ version: '2'
 services:
   server:
     container_name: recycling-server
+    # Override Dockerfile default command in dev
+    command: bash -c "bundle install && bundle exec rails s -p 3000"
     build: ./recycling-server
     image: zhzhang2012/cs121-recycling-server:v1
     ports:
@@ -12,4 +14,13 @@ services:
 
   db:
     container_name: db-mysql
-    image: mysql
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=recycling-app-dev-MySQL-SECRET
+      - MYSQL_DATABASE=recycling-app-dev
+      - MYSQL_USER=dbdevmaster
+      - MYSQL_PASSWORD=dbdevmaster
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/data:/var/lib/mysql
