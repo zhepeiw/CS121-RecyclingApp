@@ -7,6 +7,10 @@
 
 set -e
 
+RDS_DB_PROD_NAME=recycling-app-db-prod
+RDS_DB_PROD_HOST=recycling-app-db-prod-cluster.cluster-cajspzunyhon.us-east-1.rds.amazonaws.com
+RDS_DB_PROD_PORT=3306
+
 SHA1=$1
 EB_BUCKET=cs121-recycling-server-core
 DOCKERRUN_FILE=$SHA1-Dockerrun.aws.json
@@ -17,6 +21,11 @@ ENVIRONMENT_NAME=cs121-recycling-server-prod
 # production environment variables and templates.
 construct_prod_configs() {
   sed -e "s/<TAG>/$SHA1/" \
+      -e "s/<RDS_DB_PROD_NAME>/$RDS_DB_PROD_NAME/" \
+      -e "s/<RDS_DB_PROD_HOST>/$RDS_DB_PROD_HOST/" \
+      -e "s/<RDS_DB_PROD_PASSWORD>/$RDS_DB_PROD_PASSWORD/" \
+      -e "s/<RDS_DB_PROD_PORT>/$RDS_DB_PROD_PORT/" \
+      -e "s/<RDS_DB_PROD_USER>/$RDS_DB_PROD_USER/" \
       < $1 > $2
 }
 

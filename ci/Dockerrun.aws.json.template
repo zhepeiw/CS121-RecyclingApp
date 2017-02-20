@@ -6,6 +6,32 @@
       "image": "zhzhang2012/cs121-recycling-server-prod:<TAG>",
       "essential": true,
       "memory": 256,
+      "environment": [
+        {
+          "name": "RAILS_ENV",
+          "value": "production"
+        },
+        {
+          "name": "MYSQL_RDS_DB_PROD_NAME",
+          "value": "<RDS_DB_PROD_NAME>"
+        },
+        {
+          "name": "MYSQL_RDS_DB_PROD_HOST",
+          "value": "<RDS_DB_PROD_HOST>"
+        },
+        {
+          "name": "MYSQL_RDS_DB_PROD_PASSWORD",
+          "value": "<RDS_DB_PROD_PASSWORD>"
+        },
+        {
+          "name": "MYSQL_RDS_DB_PROD_PORT",
+          "value": <RDS_DB_PROD_PORT>
+        },
+        {
+          "name": "MYSQL_RDS_DB_PROD_USER",
+          "value": "<RDS_DB_PROD_USER>"
+        }
+      ],
       "portMappings": [
         {
           "hostPort": 80,
