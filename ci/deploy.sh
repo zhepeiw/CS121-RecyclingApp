@@ -26,6 +26,7 @@ construct_prod_configs() {
       -e "s/<RDS_DB_PROD_PASSWORD>/$RDS_DB_PROD_PASSWORD/" \
       -e "s/<RDS_DB_PROD_PORT>/$RDS_DB_PROD_PORT/" \
       -e "s/<RDS_DB_PROD_USER>/$RDS_DB_PROD_USER/" \
+      -e "s/<RAILS_SECRET_KEY_BASE>/$RAILS_SECRET_KEY_BASE/" \
       < $1 > $2
 }
 

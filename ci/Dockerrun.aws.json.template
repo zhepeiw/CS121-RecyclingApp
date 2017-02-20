@@ -12,6 +12,10 @@
           "value": "production"
         },
         {
+          "name": "SECRET_KEY_BASE",
+          "value": "<RAILS_SECRET_KEY_BASE>"
+        },
+        {
           "name": "MYSQL_RDS_DB_PROD_NAME",
           "value": "<RDS_DB_PROD_NAME>"
         },
