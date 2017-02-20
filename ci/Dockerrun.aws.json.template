@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "server",
-      "image": "zhzhang2012/cs121-recycling-server:<TAG>",
+      "image": "zhzhang2012/cs121-recycling-server-prod:<TAG>",
       "essential": true,
       "memory": 256,
       "portMappings": [
