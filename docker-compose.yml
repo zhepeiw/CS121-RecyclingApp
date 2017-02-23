@@ -9,10 +9,13 @@ services:
     image: zhzhang2012/cs121-recycling-server:v1
     environment:
       - RAILS_ENV=development
+    env_file:
+      - ".env"
     ports:
       - 3000:3000
     volumes:
       - ./recycling-server:/srv/server
+      - /srv/server/tmp
 
   db:
     container_name: db-mysql

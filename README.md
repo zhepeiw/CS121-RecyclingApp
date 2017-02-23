@@ -12,7 +12,22 @@ from source.
 
 ### Installation
 
-In this repository, run
+#### Create env file
+
+Before you do anything, you **MUST** complete this step:
+
+In the root directory (suppose `CS121-RecyclingApp`) create this file:
+
+```
+.env
+```
+
+This file will store your own environment variables and you must
+have it to run compose up.
+
+#### Start containers
+
+In the root directory, run
 
 ```bash
 $ docker-compose up
@@ -39,6 +54,30 @@ but keep the images, run
 ```bash
 $ docker-compose down
 ```
+
+#### [Optional] Get rid of the `Cannot render console` warning
+
+If you have set up the containers and try
+to access the main page in the browser, you may
+find this warning in your terminal log:
+
+```text
+Cannot render console <IP> at 2017-02-23 04:39:48 +0000
+```
+
+Since it's an warning, it will not affect the server
+requests. However, if you find this error annoying,
+you may follow these steps:
+
+In your `.env` file, add this line:
+
+```text
+DOCKER_HOST_IP=<IP>
+```
+
+where `IP` is the ip address shown above in the error message.
+After this, restarting your containers `down and up`
+and the error should go away.
 
 If you want to access the Rails 
 container (a basic Ubuntu shell),
