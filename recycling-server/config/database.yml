@@ -19,7 +19,7 @@ test:
   database: circle_test
   host: localhost
   user: ubuntu
-  password:
+  password: ""
 
 production:
   <<: *default

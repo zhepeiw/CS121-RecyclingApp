@@ -25,7 +25,7 @@ dependencies:
 
 test:
   override:
-    - docker run --rm -e RAILS_ENV=test --network="host" zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 bin/rails test
+    - docker run --rm -e RAILS_ENV=test -net=host zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 bin/rails test
 
 deployment:
   elasticbeanstalk:
