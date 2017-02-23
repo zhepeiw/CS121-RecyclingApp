@@ -1,6 +1,11 @@
 # Continuous integration configuration file
 # using CircleCI
 
+general:
+  branches:
+    only:
+     - master
+
 machine:
   python:
     version: 2.7.11
