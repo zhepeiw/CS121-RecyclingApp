@@ -7,12 +7,14 @@
 
 set -e
 
+ASSET_DIR=recycling-server/public/assets
 RDS_DB_PROD_NAME=recycling-app-db-prod
 RDS_DB_PROD_HOST=recycling-app-db-prod-cluster.cluster-cajspzunyhon.us-east-1.rds.amazonaws.com
 RDS_DB_PROD_PORT=3306
 
 SHA1=$1
 EB_BUCKET=cs121-recycling-server-core
+ASSET_BUCKET=cs121-recycling-server-assets
 DOCKERRUN_FILE=$SHA1-Dockerrun.aws.json
 APPLICATION_NAME=cs121-recycling-app
 ENVIRONMENT_NAME=cs121-recycling-server-prod
@@ -27,8 +29,14 @@ construct_prod_configs() {
       -e "s/<RDS_DB_PROD_PORT>/$RDS_DB_PROD_PORT/" \
       -e "s/<RDS_DB_PROD_USER>/$RDS_DB_PROD_USER/" \
       -e "s/<RAILS_SECRET_KEY_BASE>/$RAILS_SECRET_KEY_BASE/" \
+      -e "s/<RAILS_ASSET_HOST>/$RAILS_ASSET_HOST/" \
       < $1 > $2
 }
+
+printf "Start updating assets...\n"
+aws s3 rm s3://$ASSET_BUCKET/assets --recursive
+aws s3 cp --recursive $ASSET_DIR s3://$ASSET_BUCKET/assets --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+printf "Finished updating assets\n"
 
 # Set working directory for the script to /ci
 cd "$(dirname "$0")"
