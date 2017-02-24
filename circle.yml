@@ -19,14 +19,20 @@ dependencies:
   pre:
     - pip install awscli
   override:
-    - docker info
+    - cd recycling-server && RAILS_ENV=production bin/rails assets:precompile
   post:
+    - docker info
     - docker build -t zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 ./recycling-server
 
+test:
 # TODO: Fix test environment MySQL
-#test:
 #  override:
 #    - docker run --rm -e RAILS_ENV=test --net=host zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 bin/rails test
+  post:
+    - docker run -d -p 3000:3000 --name recycling-test --net=host -e RAILS_ENV=test zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1; sleep 10
+    - docker logs recycling-test
+    - curl --retry 10 --retry-delay 5 -v http://localhost:3000
+    - docker stop recycling-test
 
 deployment:
   elasticbeanstalk:
