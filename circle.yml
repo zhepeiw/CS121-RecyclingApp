@@ -19,7 +19,7 @@ dependencies:
   pre:
     - pip install awscli
   override:
-    - cd recycling-server && RAILS_ENV=production bin/rails assets:precompile
+    - cd recycling-server && bundle install && RAILS_ENV=production bin/rails assets:precompile
   post:
     - docker info
     - docker build -t zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 ./recycling-server
