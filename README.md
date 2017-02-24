@@ -1,5 +1,11 @@
 ## CS121-RecyclingApp
 
+### Production URL:
+
+- Symbolic: http://recycle.cameric.cn
+- Original: http://recyclingapp.us-east-1.elasticbeanstalk.com/ 
+
+
 ### Prerequisite
 
 To successfully set up the server, 
