@@ -29,7 +29,6 @@ construct_prod_configs() {
       -e "s/<RDS_DB_PROD_PORT>/$RDS_DB_PROD_PORT/" \
       -e "s/<RDS_DB_PROD_USER>/$RDS_DB_PROD_USER/" \
       -e "s/<RAILS_SECRET_KEY_BASE>/$RAILS_SECRET_KEY_BASE/" \
-      # Url contains slashes
       -e "s@<RAILS_ASSET_HOST>@$RAILS_ASSET_HOST@" \
       < $1 > $2
 }
