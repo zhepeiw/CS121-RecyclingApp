@@ -18,13 +18,13 @@ test:
   <<: *default
   database: circle_test
   host: localhost
-  user: ubuntu
+  username: ubuntu
   password: ""
 
 production:
   <<: *default
   database: <%= ENV['MYSQL_RDS_DB_PROD_NAME'] %>
   host: <%= ENV['MYSQL_RDS_DB_PROD_HOST'] %>
-  user: <%= ENV['MYSQL_RDS_DB_PROD_USER'] %>
+  username: <%= ENV['MYSQL_RDS_DB_PROD_USER'] %>
   password: <%= ENV['MYSQL_RDS_DB_PROD_PASSWORD'] %>
   port: <%= ENV['MYSQL_RDS_DB_PROD_PORT'] %>

@@ -124,3 +124,14 @@ on your host machine will **NOT** work!
 Note2: Tony will look into ways (e.g. file watchers) that 
 effectively run `bundle install` by itself everytime
 you change the Gemfile.
+
+### DB Migrations
+
+In development environment, `docker-compose` will call
+`bin/rake db:migrate` every time we start the server container.
+Therefore if you add a new migration to the system, 
+you could do either of the two methods below:
+
+- Stop and restart the server, which triggers the automatic migratiob
+- Enter into the container using the method shown above and run `bin/rake db:migrate`
+  inside. In that case you don't need to restart the container.
