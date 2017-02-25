@@ -1,0 +1,2 @@
+class Recycle < ApplicationRecord
+end
