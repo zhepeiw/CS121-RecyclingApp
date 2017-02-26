@@ -29,7 +29,7 @@ dependencies:
 database:
   pre:
     # Build test DB
-    - docker run --rm --net=host -e RAILS_ENV=test zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 /bin/bash -c "rake db:migrate; rake db:seed"
+    - docker run --rm --net=host -e RAILS_ENV=test zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 bin/rake db:setup
 
 test:
   override:
