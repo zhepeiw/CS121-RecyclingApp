@@ -24,7 +24,7 @@ dependencies:
     - docker build -t zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 ./recycling-server
   post:
     # Mount the /public folder so we have a copy afterwards with the precompiled assets
-    - docker run --rm --net=host -e RAILS_ENV=production -v $(pwd)/public:/srv/server/public zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 bin/rails assets:precompile
+    - docker run --rm --net=host -e RAILS_ENV=production -v $(pwd)/recycling-server/public:/srv/server/public zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 bin/rails assets:precompile
 
 database:
   pre:
