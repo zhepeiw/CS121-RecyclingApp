@@ -14,14 +14,11 @@ input[type=searchinput] {
     transition: width 0.4s ease-in-out;
     color: black;
     opacity: 0.6;
+    margin-bottom: 10px;
 }
 
 input[type=searchinput]:focus {
     width: 75%;
     opacity: 1.0;
     outline: none;
-}
-
-button[type=go] {
-    margin-top: 10px;
 }
