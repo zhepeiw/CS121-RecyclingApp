@@ -19,4 +19,5 @@ input[type=searchinput] {
 input[type=searchinput]:focus {
     width: 75%;
     opacity: 1.0;
+    outline: none;
 }
