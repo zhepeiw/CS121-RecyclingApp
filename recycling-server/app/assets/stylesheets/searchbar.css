@@ -1,5 +1,5 @@
 input[type=searchinput] {
-    width: 30%;
+    width: 60%;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 20px;
@@ -14,11 +14,13 @@ input[type=searchinput] {
     transition: width 0.4s ease-in-out;
     color: black;
     opacity: 0.6;
-    margin-bottom: 10px;
 }
 
 input[type=searchinput]:focus {
-    width: 75%;
     opacity: 1.0;
     outline: none;
+}
+
+button[type=indexSearch] {
+    margin-top: -3px;
 }
