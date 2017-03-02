@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225062200) do
+ActiveRecord::Schema.define(version: 20170302235135) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                      null: false
     t.text     "description", limit: 65535
     t.string   "image_link"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170225062200) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                      null: false
     t.string   "state",                     null: false
     t.string   "zipcode",                   null: false
@@ -30,26 +30,21 @@ ActiveRecord::Schema.define(version: 20170225062200) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "recycles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer  "city_id",        null: false
-    t.integer  "subcategory_id", null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["city_id"], name: "fk_rails_6e29e83f63", using: :btree
-    t.index ["subcategory_id"], name: "fk_rails_6001e30a6c", using: :btree
+  create_table "recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "city_id",        null: false
+    t.integer "subcategory_id", null: false
+    t.index ["city_id", "subcategory_id"], name: "index_recycles_on_city_id_and_subcategory_id", using: :btree
   end
 
-  create_table "subcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "subcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                      null: false
     t.text     "description", limit: 65535
     t.string   "image_link"
-    t.integer  "category_id",               null: false
+    t.integer  "category_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.index ["category_id"], name: "fk_rails_3937626525", using: :btree
+    t.index ["category_id"], name: "index_subcategories_on_category_id", using: :btree
   end
 
-  add_foreign_key "recycles", "cities", on_delete: :cascade
-  add_foreign_key "recycles", "subcategories", on_delete: :cascade
-  add_foreign_key "subcategories", "categories", on_delete: :cascade
+  add_foreign_key "subcategories", "categories"
 end

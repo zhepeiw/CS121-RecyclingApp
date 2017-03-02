@@ -6,7 +6,7 @@ class CreateCities < ActiveRecord::Migration[5.0]
       t.string :zipcode, null: false
       t.text :description
       t.string :image_link
-      
+
       t.timestamps
     end
   end
