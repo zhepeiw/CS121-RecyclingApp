@@ -3,5 +3,5 @@ class Subcategory < ApplicationRecord
   has_many :recycles
   has_many :cities, through: :recycles
 
-  belongs_to :categories
+  belongs_to :categories, optional: true
 end
