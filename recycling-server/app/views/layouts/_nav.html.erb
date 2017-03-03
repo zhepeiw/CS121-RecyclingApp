@@ -8,24 +8,27 @@
       <a class="navbar-brand page-scroll" href="/">Recico</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <% items.each do |item| %>
-        <li>
-          <a class="page-scroll" href="#<%= item.downcase %>"><%= item %></a>
-        </li>
-        <% end %>
-      </ul>
+    <div class="navbar-container">
+      <% if shouldShow %>
+          <form action="/cities/1" method="get" class="navSearchForm">
+            <input class="navSearchTerm" name="search" placeholder="Enter zipcode, city or item" autocomplete="off">
+            <button class="navSearchBtn">
+              <i class="fa fa-search searchIcon"></i>
+            </button>
+          </form>
+      <% end %>
+      <div class="collapse navbar-collapse navItem" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <% items.each do |item| %>
+              <li>
+                <a class="page-scroll" href="#<%= item.downcase %>"><%= item %></a>
+              </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
     <!-- /.navbar-collapse -->
   </div>
-
-  <% if shouldShow %>
-      <div>
-        blah
-      </div>
-  <% end %>
-
   <!-- /.container-fluid -->
 </nav>
