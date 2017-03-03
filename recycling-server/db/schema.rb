@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170302235135) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",                      null: false
     t.text     "description", limit: 65535
     t.string   "image_link"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170302235135) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",                      null: false
     t.string   "state",                     null: false
     t.string   "zipcode",                   null: false
@@ -30,13 +30,13 @@ ActiveRecord::Schema.define(version: 20170302235135) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "city_id",        null: false
     t.integer "subcategory_id", null: false
     t.index ["city_id", "subcategory_id"], name: "index_recycles_on_city_id_and_subcategory_id", using: :btree
   end
 
-  create_table "subcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "subcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",                      null: false
     t.text     "description", limit: 65535
     t.string   "image_link"
