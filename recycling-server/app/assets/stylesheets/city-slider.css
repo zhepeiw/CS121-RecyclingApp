@@ -1,7 +1,5 @@
 .city-slider-container {
     text-align: center;
     padding-left: 10%;
-}
-.city-flexslider {
-    width: 90%;
+    padding-right: 10%;
 }
