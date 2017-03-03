@@ -9,7 +9,7 @@ set -e
 
 ASSET_DIR=recycling-server/public/assets
 RDS_DB_PROD_NAME=recycling_app_db_prod
-RDS_DB_PROD_HOST=recycling-app-db-prod-rds-cluster.cluster-cajspzunyhon.us-east-1.rds.amazonaws.com
+RDS_DB_PROD_HOST=recycling-app-db-prod.cajspzunyhon.us-east-1.rds.amazonaws.com
 RDS_DB_PROD_PORT=3306
 
 SHA1=$1
