@@ -3,7 +3,7 @@ class CitiesController < ApplicationController
   end
 
   def show
-    @categories = Category.all
     @city = City.find_by_id(1)
+    @categories = Category.all
   end
 end

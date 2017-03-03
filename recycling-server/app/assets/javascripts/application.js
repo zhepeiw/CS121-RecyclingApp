@@ -21,4 +21,6 @@
 //= require jquery.flexslider-min
 //= require flexslider
 
+//= require cities
+
 //= require_tree .

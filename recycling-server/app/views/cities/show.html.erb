@@ -13,20 +13,45 @@
       <ul class="slides">
         <% @categories.each do |category| %>
           <li><div class="portfolio-box">
-            <%= image_tag "categories/thumbnails/#{category.image_link}", class: "img-responsive" %>
-            <div class="portfolio-box-caption">
-              <div class="portfolio-box-caption-content">
-                <div class="project-name">
-                  <%= category.name %>
+            <button id="category-<%= category.name.downcase %>" class="button-as-link">
+              <%= image_tag "categories/thumbnails/#{category.image_link}", class: "img-responsive" %>
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-name">
+                    <%= category.name %>
+                  </div>
                 </div>
               </div>
-            </div>
+            </button>
           </div>
 
           </li>
         <% end %>
       </ul>
   </div>
+</section>
+
+<section class="category-container">
+  <% @categories.each do |category| %>
+  <div id="category-<%= category.name.downcase %>-details" class="category-details">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <% City.find_subcategories_by_id(@city.id, category.id).each_with_index do |subcategory, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= subcategory.name %></td>
+            <td><%= subcategory.description %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+  <% end %>
 </section>
 
 <section id="contact" class="bg-dark">

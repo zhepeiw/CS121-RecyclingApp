@@ -3,10 +3,8 @@ class City < ApplicationRecord
   has_many :recycles
   has_many :subcategories, through: :recycles
 
-  def find_city_by_id(id)
-    Recycle
-        .joins(:city, :subcategory)
-        .where(cities: { id: id })
-        .take
+  def self.find_subcategories_by_id(city_id, category_id)
+    city = City.find_by_id(city_id)
+    city.subcategories.where(category_id: category_id)
   end
 end
