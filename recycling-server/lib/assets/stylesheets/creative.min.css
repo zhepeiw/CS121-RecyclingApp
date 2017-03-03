@@ -178,8 +178,11 @@ header {
     background-size: cover;
     -o-background-size: cover;
     background-position: center;
-    background-image: image-url('header.jpg');
     color: #fff
+}
+
+.index-header {
+    background-image: image-url('header.jpg');
 }
 
 header .header-content {

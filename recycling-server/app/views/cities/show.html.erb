@@ -1,5 +1,6 @@
 <%= render partial: "layouts/nav", locals: {items: ["About", "Categories", "Contact"]} %>
-<header class="city-header">
+<header class="city-header"
+        style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path "cities/#{@city.image_link}" %>)">
   <div class="header-content">
     <div class="header-content-inner">
       <h1 id="homeHeading">Claremont</h1>
@@ -25,16 +26,6 @@
           </div>
 
           </li>
-        <!--<li>-->
-          <!--<img src="slide2.jpg" />-->
-        <!--</li>-->
-        <!--<li>-->
-          <!--<img src="slide3.jpg" />-->
-        <!--</li>-->
-        <!--<li>-->
-          <!--<img src="slide4.jpg" />-->
-        <!--</li>-->
-        <!--&lt;!&ndash; items mirrored twice, total of 12 &ndash;&gt;-->
         <% end %>
       </ul>
   </div>
