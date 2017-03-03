@@ -8,12 +8,12 @@
 
 # category seed
 categoryList = [
-	["Paper", "", ""],
-	["Cardboard", "", ""],
-	["Glass", "", ""],
-	["Plastic", "", ""],
-	["Metal", "", ""],
-	["Oil", "", ""]
+	["Paper", "", "paper.jpg"],
+	["Cardboard", "", "cardboard.jpg"],
+	["Glass", "", "glass.jpg"],
+	["Plastic", "", "plastic.jpg"],
+	["Metal", "", "metal.jpg"],
+	["Oil", "", "oil.jpg"]
 ]
 
 categoryList.each do |name, description, image_link|
