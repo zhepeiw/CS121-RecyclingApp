@@ -1,3 +1,4 @@
+/*search bar on index page*/
 .searchForm {
     margin-left:auto;
     margin-right: auto;
@@ -51,5 +52,74 @@
 }
 
 .searchIcon{
+    color: #0b0b0b;
+}
+/***********************/
+/*search bar on navigation bar*/
+/***********************/
+.navbar-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+.navItem {
+    flex-basis: auto;
+}
+.navSearchForm {
+    /*margin-left:auto;*/
+    /*margin-right: auto;*/
+    flex-basis:80%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: stretch;
+}
+
+.navSearchTerm {
+    border: 0;
+    flex-basis: 1%;
+    /*flex-shrink: 0.1;*/
+    box-sizing: border-box;
+    border-radius: 0;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 0px 12px 0px;
+    -webkit-transition: flex-basis 0.4s, opacity 0.2s, ease-in-out;
+    transition: flex-basis 0.4s, opacity 0.2s, ease-in-out;
+    color: black;
+    opacity: 0.7;
+}
+
+.navSearchTerm:hover{
+    opacity: 0.8;
+}
+.navSearchTerm:focus {
+    flex-basis: 90%;
+    z-index: 999;
+    opacity: 1.0;
+    outline: none;
+}
+.navSearchBtn{
+    border: 0;
+    flex-basis: 1%;
+    border-radius: 0;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 20px 12px 20px;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0.7;
+}
+
+.navSearchBtn:hover{
+    opacity: 0.9;
+}
+.navSearchBtn:focus{
+    opacity: 1.0;
+    outline: none;
+}
+
+.navSearchBtn{
     color: #0b0b0b;
 }
