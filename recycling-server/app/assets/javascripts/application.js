@@ -19,5 +19,6 @@
 //= require scrollreveal.min
 //= require creative.min
 //= require jquery.flexslider-min
+//= require flexslider
 
 //= require_tree .

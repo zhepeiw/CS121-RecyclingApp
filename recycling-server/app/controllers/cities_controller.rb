@@ -3,5 +3,6 @@ class CitiesController < ApplicationController
   end
 
   def show
+    @categories = Category.all
   end
 end

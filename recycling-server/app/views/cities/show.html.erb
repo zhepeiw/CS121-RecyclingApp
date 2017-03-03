@@ -1,33 +1,29 @@
-<%= render partial: "layouts/nav", locals: {items: ["Categories", "Facilities"]} %>
-<!--<h1>Cities#show</h1>-->
-<!--<p>Find me in app/views/cities/show.html.erb</p>-->
-<section class="no-padding" id="categories">
-  <div class="container-fluid">
-    <div class="row no-gutter popup-gallery">
-      <% @categories.each do |category| %>
-          <div class="col-lg-4 col-sm-6">
-            <a href="<%= image_url("categories/fullsize/#{category.image_link}") %>" class="portfolio-box">
-              <%= image_tag "categories/thumbnails/#{category.image_link}", class: "img-responsive" %>
-              <div class="portfolio-box-caption">
-                <div class="portfolio-box-caption-content">
-                  <div class="project-name">
-                    <%= category.name %>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-      <% end %>
+<%= render partial: "layouts/nav", locals: {items: ["About", "Categories", "Contact"]} %>
+<header>
+  <div class="header-content">
+    <div class="header-content-inner">
+      <h1 id="homeHeading">Claremont</h1>
+      <hr>
     </div>
   </div>
-</section>
-
-<section>
-  <div class="flexslider">
+</header>
+<!--<h1>Cities#show</h1>-->
+<!--<p>Find me in app/views/cities/show.html.erb</p>-->
+<section class="city-slider-container">
+  <div class="flexslider city-flexslider">
       <ul class="slides">
         <% @categories.each do |category| %>
-          <li>
+          <li><div class="portfolio-box">
             <%= image_tag "categories/thumbnails/#{category.image_link}", class: "img-responsive" %>
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class="project-name">
+                  <%= category.name %>
+                </div>
+              </div>
+            </div>
+          </div>
+
           </li>
         <!--<li>-->
           <!--<img src="slide2.jpg" />-->
@@ -44,3 +40,22 @@
   </div>
 </section>
 
+<section id="contact" class="bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 text-center">
+        <h2 class="section-heading">Let's Get In Touch!</h2>
+        <hr class="primary">
+        <p>(Ready to recyle with us?) Having issue and getting mad with our product? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+      </div>
+      <div class="col-lg-4 col-lg-offset-2 text-center">
+        <i class="fa fa-phone fa-3x sr-contact"></i>
+        <p>Michael's phone number</p>
+      </div>
+      <div class="col-lg-4 text-center">
+        <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+        <p><a href="mailto:your-email@your-domain.com">ycai@hmc.edu</a></p>
+      </div>
+    </div>
+  </div>
+</section>
