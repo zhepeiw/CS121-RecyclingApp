@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170302235135) do
     t.string   "image_link"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
   end
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170302235135) do
     t.string   "image_link"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.index ["name"], name: "index_cities_on_name", unique: true, using: :btree
   end
 
   create_table "recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -44,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170302235135) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["category_id"], name: "index_subcategories_on_category_id", using: :btree
+    t.index ["name"], name: "index_subcategories_on_name", unique: true, using: :btree
   end
 
   add_foreign_key "subcategories", "categories"
