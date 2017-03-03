@@ -18,5 +18,6 @@
 //= require jquery.magnific-popup.min
 //= require scrollreveal.min
 //= require creative.min
+//= require jquery.flexslider
 
 //= require_tree .

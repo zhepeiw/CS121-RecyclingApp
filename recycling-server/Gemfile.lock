@@ -58,6 +58,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.17)
+    flexslider (2.2.0)
+      sass-rails (>= 3.1.0)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
@@ -164,6 +166,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.2)
+  flexslider
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
