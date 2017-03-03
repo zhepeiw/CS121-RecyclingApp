@@ -1,3 +1,46 @@
 <%= render partial: "layouts/nav", locals: {items: ["Categories", "Facilities"]} %>
-<h1>Cities#show</h1>
-<p>Find me in app/views/cities/show.html.erb</p>
+<!--<h1>Cities#show</h1>-->
+<!--<p>Find me in app/views/cities/show.html.erb</p>-->
+<section class="no-padding" id="categories">
+  <div class="container-fluid">
+    <div class="row no-gutter popup-gallery">
+      <% @categories.each do |category| %>
+          <div class="col-lg-4 col-sm-6">
+            <a href="<%= image_url("categories/fullsize/#{category.image_link}") %>" class="portfolio-box">
+              <%= image_tag "categories/thumbnails/#{category.image_link}", class: "img-responsive" %>
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-name">
+                    <%= category.name %>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="flexslider">
+      <ul class="slides">
+        <% @categories.each do |category| %>
+          <li>
+            <%= image_tag "categories/thumbnails/#{category.image_link}", class: "img-responsive" %>
+          </li>
+        <!--<li>-->
+          <!--<img src="slide2.jpg" />-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<img src="slide3.jpg" />-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<img src="slide4.jpg" />-->
+        <!--</li>-->
+        <!--&lt;!&ndash; items mirrored twice, total of 12 &ndash;&gt;-->
+        <% end %>
+      </ul>
+  </div>
+</section>
+
