@@ -21,6 +21,10 @@
 //= require jquery.flexslider-min
 //= require flexslider
 
+// Partial JS
+//= require _nav
+
+// View JS
 //= require cities
 
 //= require_tree .

@@ -1,24 +1,16 @@
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
+<nav id="recico-nav" class="navbar navbar-default navbar-fixed-top recico-nav">
+  <div class="container-fluid recico-nav-container">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+    <div class="navbar-header recico-nav-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
       </button>
       <a class="navbar-brand page-scroll" href="/">Recico</a>
     </div>
 
-    <div class="navbar-container">
-      <% if shouldShow %>
-          <form action="/cities/1" method="get" class="navSearchForm">
-            <input class="navSearchTerm" name="search" placeholder="Enter zipcode, city or item" autocomplete="off">
-            <button class="navSearchBtn">
-              <i class="fa fa-search searchIcon"></i>
-            </button>
-          </form>
-      <% end %>
+    <div class="recico-nav-content">
       <div class="collapse navbar-collapse navItem" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-left">
           <% items.each do |item| %>
               <li>
                 <a class="page-scroll" href="#<%= item.downcase %>"><%= item %></a>
@@ -26,6 +18,17 @@
           <% end %>
         </ul>
       </div>
+    </div>
+
+    <div class="recico-nav-search">
+      <% if shouldShow %>
+          <form action="/cities/1" method="get" class="navSearchForm">
+            <input id="navSearchTerm" class="navSearchTerm" name="search" placeholder="Enter zipcode, city or item" autocomplete="off">
+            <button class="navSearchBtn">
+              <i class="fa fa-search searchIcon"></i>
+            </button>
+          </form>
+      <% end %>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <!-- /.navbar-collapse -->

@@ -54,22 +54,13 @@
 .searchIcon{
     color: #0b0b0b;
 }
+
 /***********************/
 /*search bar on navigation bar*/
 /***********************/
-.navbar-container {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: nowrap;
-    align-items: stretch;
-}
-.navItem {
-    flex-basis: auto;
-}
+
 .navSearchForm {
-    /*margin-left:auto;*/
-    /*margin-right: auto;*/
-    flex-basis:80%;
+    /*flex-basis:80%;*/
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-end;
@@ -77,16 +68,15 @@
 }
 
 .navSearchTerm {
+    height: 40px;
     border: 0;
-    flex-basis: 1%;
-    /*flex-shrink: 0.1;*/
     box-sizing: border-box;
-    border-radius: 0;
+    border-radius: 5px 0 0 5px;
     font-size: 16px;
     background-color: white;
     padding: 12px 10px;
-    -webkit-transition: flex-basis 0.4s, opacity 0.2s, ease-in-out;
-    transition: flex-basis 0.4s, opacity 0.2s, ease-in-out;
+    -webkit-transition: flex .2s, -ms-flex .2s, opacity 0.2s;
+    transition: flex .2s, -ms-flex .2s, opacity 0.2s;
     color: black;
     opacity: 0.7;
 }
@@ -95,18 +85,16 @@
     opacity: 0.8;
 }
 .navSearchTerm:focus {
-    flex-basis: 90%;
-    z-index: 999;
+    flex: 1 0 auto;
     opacity: 1.0;
     outline: none;
 }
 .navSearchBtn{
     border: 0;
-    flex-basis: 1%;
-    border-radius: 0;
+    border-radius: 0 5px 5px 0;
     font-size: 16px;
     background-color: white;
-    padding: 12px 20px 12px 20px;
+    padding: 0 20px;
     -webkit-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
     opacity: 0.7;

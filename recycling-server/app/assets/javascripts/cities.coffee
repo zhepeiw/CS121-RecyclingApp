@@ -5,6 +5,6 @@
 $(document).ready ->
   $('#category-paper-details').addClass('category-details-active');
 
-  $('.city-slider-container button').click () ->
+  $('.city-slider-container button').click ->
     $('.category-details').removeClass('category-details-active');
     $("##{$(this).attr('id')}-details").addClass('category-details-active');
