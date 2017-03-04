@@ -1,33 +1,46 @@
 .recico-nav .recico-nav-container {
   height: 50px;
   display: flex;
+
+  .recico-nav-header {
+    flex: 0 0 auto;
+  }
+
+  .recico-nav-content {
+    flex: 1 1 0;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      .recico-nav-collapsed {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  .recico-nav-search {
+    flex: 0 0 auto;
+    padding: 5px 0;
+  }
 }
 
-.recico-nav .recico-nav-container .recico-nav-header {
-  flex: 0 0 auto;
-}
+.recico-nav .recico-nav-container.nav-search-active {
+  .recico-nav-content {
+    flex: 0 0 auto;
+    width: 0;
+    overflow-y: hidden;
+    visibility: hidden;
 
-.recico-nav .recico-nav-container .recico-nav-content {
-  flex: 1 1 0;
-  width: 100%;
-}
+    -webkit-transition: flex .2s, width .2s, -ms-flex .2s;
+    transition: flex .2s, width .2s, -ms-flex .2s;
+  }
 
-.recico-nav .recico-nav-container.nav-search-active .recico-nav-content {
-  flex: 0 0 auto;
-  width: 0;
-  overflow-y: hidden;
-  visibility: hidden;
-
-  -webkit-transition: flex .2s, width .2s, -ms-flex .2s;
-  transition: flex .2s, width .2s, -ms-flex .2s;
-}
-
-.recico-nav .recico-nav-container .recico-nav-search {
-  flex: 0 0 auto;
-  padding: 5px 0;
-}
-
-.recico-nav .recico-nav-container.nav-search-active .recico-nav-search {
-  flex: 1 0 auto;
-  padding: 5px 0;
+  .recico-nav-search {
+    flex: 1 0 auto;
+    padding: 5px 0;
+  }
 }
