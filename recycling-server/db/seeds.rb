@@ -8,16 +8,16 @@
 
 # category seed
 categoryList = [
-	["Paper", "", "paper.jpg"],
-	["Cardboard", "", "cardboard.jpg"],
-	["Glass", "", "glass.jpg"],
-	["Plastic", "", "plastic.jpg"],
-	["Metal", "", "metal.jpg"],
-	["Oil", "", "oil.jpg"]
+	["Paper", "", "paper.jpg", "10000"],
+	["Cardboard", "", "cardboard.jpg", "10000"],
+	["Glass", "", "glass.jpg", "10000"],
+	["Plastic", "", "plastic.jpg", "10000"],
+	["Metal", "", "metal.jpg", "10000"],
+	["Oil", "", "oil.jpg", "00001"]
 ]
 
-categoryList.each do |name, description, image_link|
-	Category.create(name: name, description: description, image_link: image_link)
+categoryList.each do |name, description, image_link, recycle_class|
+	Category.create(name: name, description: description, image_link: image_link, recycle_class: recycle_class)
 end
 
 # subcategory seed
