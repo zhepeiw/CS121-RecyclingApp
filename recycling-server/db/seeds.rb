@@ -96,7 +96,7 @@ recycleList = [
 ]
 
 recycleList.each do |city_id, subcategory_id|
-	Recycle.create(city_id: city_id, subcategory_id: subcategory_id)
+	Recycle.create(cities_id: city_id, subcategories_id: subcategory_id)
 end
 
 # facilities seed
@@ -117,7 +117,7 @@ hasFacilityLst = [
 ]
 
 hasFacilityLst.each do |city_id, facility_id|
-	HasFacility.create(city_id: city_id, facility_id: facility_id)
+	HasFacility.create(cities_id: city_id, facilities_id: facility_id)
 end
 
 # facility_recycle seed
@@ -126,5 +126,5 @@ facilityRecycleList = [
 ]
 
 facilityRecycleList.each do |facility_id, category_id|
-	FacilityRecycle.create(facility_id: facility_id, category_id: category_id)
+	FacilityRecycle.create(facilities_id: facility_id, categories_id: category_id)
 end

@@ -44,24 +44,25 @@ ActiveRecord::Schema.define(version: 20170307100614) do
     t.index ["street_address"], name: "index_facilities_on_street_address", unique: true, using: :btree
   end
 
-  create_table "facility_recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "facility_id", null: false
-    t.integer "category_id", null: false
-    t.index ["category_id"], name: "index_facility_recycles_on_category_id", using: :btree
-    t.index ["facility_id"], name: "index_facility_recycles_on_facility_id", using: :btree
+  create_table "facility_recycles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "facilities_id"
+    t.integer "categories_id"
+    t.index ["categories_id"], name: "index_facility_recycles_on_categories_id", using: :btree
+    t.index ["facilities_id"], name: "index_facility_recycles_on_facilities_id", using: :btree
   end
 
-  create_table "has_facilities", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "city_id",     null: false
-    t.integer "facility_id", null: false
-    t.index ["city_id"], name: "index_has_facilities_on_city_id", using: :btree
-    t.index ["facility_id"], name: "index_has_facilities_on_facility_id", using: :btree
+  create_table "has_facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "cities_id"
+    t.integer "facilities_id"
+    t.index ["cities_id"], name: "index_has_facilities_on_cities_id", using: :btree
+    t.index ["facilities_id"], name: "index_has_facilities_on_facilities_id", using: :btree
   end
 
-  create_table "recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "city_id",        null: false
-    t.integer "subcategory_id", null: false
-    t.index ["city_id", "subcategory_id"], name: "index_recycles_on_city_id_and_subcategory_id", using: :btree
+  create_table "recycles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "cities_id"
+    t.integer "subcategories_id"
+    t.index ["cities_id"], name: "index_recycles_on_cities_id", using: :btree
+    t.index ["subcategories_id"], name: "index_recycles_on_subcategories_id", using: :btree
   end
 
   create_table "subcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -75,5 +76,11 @@ ActiveRecord::Schema.define(version: 20170307100614) do
     t.index ["name"], name: "index_subcategories_on_name", unique: true, using: :btree
   end
 
+  add_foreign_key "facility_recycles", "categories", column: "categories_id"
+  add_foreign_key "facility_recycles", "facilities", column: "facilities_id"
+  add_foreign_key "has_facilities", "cities", column: "cities_id"
+  add_foreign_key "has_facilities", "facilities", column: "facilities_id"
+  add_foreign_key "recycles", "cities", column: "cities_id"
+  add_foreign_key "recycles", "subcategories", column: "subcategories_id"
   add_foreign_key "subcategories", "categories"
 end
