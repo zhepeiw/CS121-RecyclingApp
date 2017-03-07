@@ -8,7 +8,16 @@
     </div>
   </div>
 </header>
+
 <section class="city-slider-container">
+  <div class="container category-title-container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Recyclable Categories</h2>
+        <hr class="primary">
+      </div>
+    </div>
+  </div>
   <div class="flexslider city-flexslider">
       <ul class="slides">
         <% @categories.each do |category| %>
@@ -52,6 +61,52 @@
     </table>
   </div>
   <% end %>
+</section>
+
+<section class="facility-map">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Facilities</h2>
+        <hr class="primary">
+      </div>
+    </div>
+  </div>
+  <div id="map"></div>
+  <script>
+    function initMap() {
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: {lat: 34.106, lng: -117.711}
+      });
+
+      var infoWindow = new google.maps.InfoWindow;
+
+      // Add some markers to the map.
+      // Note: The code uses the JavaScript Array.prototype.map() method to
+      // create an array of markers based on a given "locations" array.
+      // The map() method here has nothing to do with the Google Maps API.
+      var markers = locations.map(function(location, i) {
+        return new google.maps.Marker({
+          position: location[0],
+          label: (i+1).toString()
+        });
+      });
+
+      // Add a marker clusterer to manage the markers.
+      var markerCluster = new MarkerClusterer(map, markers,
+          {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+    }
+    var locations = [
+      [{lat: 34.113687, lng: -117.697283}, "Claremont Residential Recycling Center"]
+    ]
+  </script>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaWUYyz0sFWLlxktQUuGQtj0Hmg1QMEIk&callback=initMap">
+  </script>
 </section>
 
 <section id="contact" class="bg-dark">

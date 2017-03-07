@@ -29,10 +29,25 @@
   padding-top: 0px;
 }
 
+.category-title-container {
+  width: auto;
+}
+
 .category-details {
   display: none;
 }
 
 .category-details-active {
   display: block;
+}
+
+.facility-map {
+  padding-top: 0px;
+  padding-bottom: 50px;
+}
+
+#map {
+  height: 500px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
