@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302235135) do
+ActiveRecord::Schema.define(version: 20170307100614) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                        null: false
@@ -31,6 +31,31 @@ ActiveRecord::Schema.define(version: 20170302235135) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["name"], name: "index_cities_on_name", unique: true, using: :btree
+  end
+
+  create_table "facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",           null: false
+    t.string   "street_address"
+    t.string   "zipcode"
+    t.string   "phone_number"
+    t.string   "website"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["street_address"], name: "index_facilities_on_street_address", unique: true, using: :btree
+  end
+
+  create_table "facility_recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "facility_id", null: false
+    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_facility_recycles_on_category_id", using: :btree
+    t.index ["facility_id"], name: "index_facility_recycles_on_facility_id", using: :btree
+  end
+
+  create_table "has_facilities", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "city_id",     null: false
+    t.integer "facility_id", null: false
+    t.index ["city_id"], name: "index_has_facilities_on_city_id", using: :btree
+    t.index ["facility_id"], name: "index_has_facilities_on_facility_id", using: :btree
   end
 
   create_table "recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

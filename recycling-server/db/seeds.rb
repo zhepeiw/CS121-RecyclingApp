@@ -13,7 +13,8 @@ categoryList = [
 	["Glass", "", "glass.jpg", "10000"],
 	["Plastic", "", "plastic.jpg", "10000"],
 	["Metal", "", "metal.jpg", "10000"],
-	["Oil", "", "oil.jpg", "00001"]
+	["Oil", "", "oil.jpg", "00001"],
+	["Electronics", "", "", "00010"]
 ]
 
 categoryList.each do |name, description, image_link, recycle_class|
@@ -96,4 +97,34 @@ recycleList = [
 
 recycleList.each do |city_id, subcategory_id|
 	Recycle.create(city_id: city_id, subcategory_id: subcategory_id)
+end
+
+# facilities seed
+facilitiesList = [
+	["Residential Recycling Center", "City Yard - 1616 Monte Vista Avenue, Claremont", "91711", "909-399-5431", nil], # paper, cardboard, glass, plastic, metal, and aluminum
+	["Connie and Dick's Automotive", "150 Olive Street, Claremont", "91711", "909-626-5653", "www.connieanddicks.com"], # oil
+	["GreenWay Solid Waste & Recycling Inc", "10660 Silicon Avenue #H, Montclair", "91763", "909-518-7943", "www.greenwayrecyclinginc.com"], # Electronic
+	["Clean LA", "900 S, Fremont Ave, Alhambra", "91803", "888-253-2652", "www.888cleanla.com"] # other hazardous
+]
+
+facilitiesList.each do |name, street_address, zipcode, phone_number, website, city_id|
+	Facility.create(name: name, street_address: street_address, zipcode: zipcode, phone_number: phone_number, website: website)
+end
+
+# has_facilities seed
+hasFacilityLst = [
+	[1, 1], [1, 2], [1, 3], [1, 4]
+]
+
+hasFacilityLst.each do |city_id, facility_id|
+	HasFacility.create(city_id: city_id, facility_id: facility_id)
+end
+
+# facility_recycle seed
+facilityRecycleList = [
+	[1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [2, 6], [3, 7]
+]
+
+facilityRecycleList.each do |facility_id, category_id|
+	FacilityRecycle.create(facility_id: facility_id, category_id: category_id)
 end
