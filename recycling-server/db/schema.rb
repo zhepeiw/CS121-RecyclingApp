@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170307100614) do
     t.string   "name",                        null: false
     t.text     "description",   limit: 65535
     t.string   "image_link"
-    t.string   "recycle_class"
+    t.integer  "recycle_class"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree

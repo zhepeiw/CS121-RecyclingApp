@@ -1,7 +1,7 @@
-require 'test_helper'
+# require 'test_helper'
 
-class CityTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-end
+# class CityTest < ActiveSupport::TestCase
+#   # test "the truth" do
+#   #   assert true
+#   # end
+# end

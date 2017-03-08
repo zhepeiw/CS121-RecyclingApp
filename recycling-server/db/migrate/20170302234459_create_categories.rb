@@ -4,12 +4,12 @@ class CreateCategories < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.text :description
       t.string :image_link
-      t.string :recycle_class # Five digit string, "abcde"
-                              # a represents recyclables
-                              # b represents compost
-                              # c represents biodegradable
-                              # d represents electronics waste
-                              # e represents hazardous waste
+      t.integer :recycle_class
+      # 1 represents recyclables
+      # 2 represents compost
+      # 3 represents biodegradable
+      # 4 represents electronics waste
+      # 5 represents hazardous waste
 
       t.timestamps
     end
