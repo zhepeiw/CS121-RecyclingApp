@@ -4,7 +4,7 @@ services:
   server:
     container_name: recycling-server
     # Override Dockerfile default command in dev
-    command: bash -c "./wait-for-it.sh db:3306 -t 60 -- bundle install && bin/rake db:migrate && bin/rake db:seed && bundle exec rails s -p 3000"
+    command: bash -c "./wait-for-it.sh db:3306 -t 60 -- bundle install && bin/rake db:migrate && bundle exec rails s -p 3000"
     build: ./recycling-server
     image: zhzhang2012/cs121-recycling-server:v1
     depends_on:

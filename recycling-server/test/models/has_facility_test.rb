@@ -1,6 +1,6 @@
 # require 'test_helper'
 
-# class CityTest < ActiveSupport::TestCase
+# class HasFacilityTest < ActiveSupport::TestCase
 #   # test "the truth" do
 #   #   assert true
 #   # end

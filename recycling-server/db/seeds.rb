@@ -8,16 +8,17 @@
 
 # category seed
 categoryList = [
-	["Paper", "", "paper.jpg"],
-	["Cardboard", "", "cardboard.jpg"],
-	["Glass", "", "glass.jpg"],
-	["Plastic", "", "plastic.jpg"],
-	["Metal", "", "metal.jpg"],
-	["Oil", "", "oil.jpg"]
+	["Paper", "", "paper.jpg", 1],
+	["Cardboard", "", "cardboard.jpg", 1],
+	["Glass", "", "glass.jpg", 1],
+	["Plastic", "", "plastic.jpg", 1],
+	["Metal", "", "metal.jpg", 1],
+	["Oil", "", "oil.jpg", 5],
+	["Electronics", "", "", 4]
 ]
 
-categoryList.each do |name, description, image_link|
-	Category.create(name: name, description: description, image_link: image_link)
+categoryList.each do |name, description, image_link, recycle_class|
+	Category.create(name: name, description: description, image_link: image_link, recycle_class: recycle_class)
 end
 
 # subcategory seed
@@ -95,5 +96,35 @@ recycleList = [
 ]
 
 recycleList.each do |city_id, subcategory_id|
-	Recycle.create(city_id: city_id, subcategory_id: subcategory_id)
+	Recycle.create(cities_id: city_id, subcategories_id: subcategory_id)
+end
+
+# facilities seed
+facilitiesList = [
+	["Residential Recycling Center", "City Yard - 1616 Monte Vista Avenue, Claremont", "91711", "909-399-5431", nil], # paper, cardboard, glass, plastic, metal, and aluminum
+	["Connie and Dick's Automotive", "150 Olive Street, Claremont", "91711", "909-626-5653", "www.connieanddicks.com"], # oil
+	["GreenWay Solid Waste & Recycling Inc", "10660 Silicon Avenue #H, Montclair", "91763", "909-518-7943", "www.greenwayrecyclinginc.com"], # Electronic
+	["Clean LA", "900 S, Fremont Ave, Alhambra", "91803", "888-253-2652", "www.888cleanla.com"] # other hazardous
+]
+
+facilitiesList.each do |name, street_address, zipcode, phone_number, website, city_id|
+	Facility.create(name: name, street_address: street_address, zipcode: zipcode, phone_number: phone_number, website: website)
+end
+
+# has_facilities seed
+hasFacilityLst = [
+	[1, 1], [1, 2], [1, 3], [1, 4]
+]
+
+hasFacilityLst.each do |city_id, facility_id|
+	HasFacility.create(cities_id: city_id, facilities_id: facility_id)
+end
+
+# facility_recycle seed
+facilityRecycleList = [
+	[1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [2, 6], [3, 7]
+]
+
+facilityRecycleList.each do |facility_id, category_id|
+	FacilityRecycle.create(facilities_id: facility_id, categories_id: category_id)
 end
