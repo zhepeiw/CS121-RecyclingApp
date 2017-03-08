@@ -1,2 +1,10 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<%= render partial: "layouts/nav", locals: {items: ["Categories", "Facilities", "Contact"], shouldShow: true} %>
+<header class="city-header"
+        style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path "categories/fullsize/cardboard.jpg" %>)">
+  <div class="header-content">
+    <div class="header-content-inner">
+      <h1 id="homeHeading">Cardboard</h1>
+      <hr>
+    </div>
+  </div>
+</header>
