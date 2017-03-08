@@ -1,4 +1,4 @@
 class FacilityRecycle < ApplicationRecord
-  belongs_to :facilities, optional: true
-  belongs_to :categories, optional: true
+  belongs_to :facility
+  belongs_to :category
 end
