@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170307100614) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",                        null: false
     t.text     "description",   limit: 65535
     t.string   "image_link"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170307100614) do
     t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
   end
 
-  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",                      null: false
     t.string   "state",                     null: false
     t.string   "zipcode",                   null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20170307100614) do
     t.index ["name"], name: "index_cities_on_name", unique: true, using: :btree
   end
 
-  create_table "facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",           null: false
     t.string   "street_address"
     t.string   "zipcode"
@@ -44,28 +44,28 @@ ActiveRecord::Schema.define(version: 20170307100614) do
     t.index ["street_address"], name: "index_facilities_on_street_address", unique: true, using: :btree
   end
 
-  create_table "facility_recycles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "facility_recycles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "facilities_id"
     t.integer "categories_id"
     t.index ["categories_id"], name: "index_facility_recycles_on_categories_id", using: :btree
     t.index ["facilities_id"], name: "index_facility_recycles_on_facilities_id", using: :btree
   end
 
-  create_table "has_facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "has_facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "cities_id"
     t.integer "facilities_id"
     t.index ["cities_id"], name: "index_has_facilities_on_cities_id", using: :btree
     t.index ["facilities_id"], name: "index_has_facilities_on_facilities_id", using: :btree
   end
 
-  create_table "recycles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "recycles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "cities_id"
     t.integer "subcategories_id"
     t.index ["cities_id"], name: "index_recycles_on_cities_id", using: :btree
     t.index ["subcategories_id"], name: "index_recycles_on_subcategories_id", using: :btree
   end
 
-  create_table "subcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "subcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",                      null: false
     t.text     "description", limit: 65535
     t.string   "image_link"
