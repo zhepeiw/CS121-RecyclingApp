@@ -29,3 +29,23 @@ services:
       - MYSQL_PASSWORD=dbdevmaster
     ports:
       - 3306:3306
+
+  search:
+    container_name: search-elastic
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
+    ports:
+      - 9200:9200
+    environment:
+      - cluster.name=search-elastic-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    mem_limit: 1g
+    cap_add:
+      - IPC_LOCK
