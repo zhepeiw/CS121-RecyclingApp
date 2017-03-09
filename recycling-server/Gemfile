@@ -21,6 +21,10 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Elasticsearch
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 # Use Bootstrap as front-end styling lib
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-rails'
