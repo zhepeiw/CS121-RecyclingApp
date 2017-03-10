@@ -6,6 +6,9 @@
       "image": "zhzhang2012/cs121-recycling-server-prod:<TAG>",
       "essential": true,
       "memory": 256,
+      "links": [
+        "search"
+      ]
       "environment": [
         {
           "name": "RAILS_ENV",
@@ -50,6 +53,32 @@
         {
           "sourceVolume": "awseb-logs-server",
           "containerPath": "/srv/server/log"
+        }
+      ]
+    },
+    {
+      "name": "search",
+      "image": "docker.elastic.co/elasticsearch/elasticsearch:5.2.2",
+      "essential": true,
+      "memory": 256,
+      "environment": [
+        {
+          "name": "cluster.name",
+          "value": "search-elastic-cluster-prod"
+        },
+        {
+          "name": "bootstrap.memory_lock",
+          "value": "true"
+        },
+        {
+          "name": "ES_JAVA_OPTS",
+          "value": "-Xms512m -Xmx512m"
+        }
+      ],
+      "portMappings": [
+        {
+          "hostPort": 9200,
+          "containerPort": 9200
         }
       ]
     }
