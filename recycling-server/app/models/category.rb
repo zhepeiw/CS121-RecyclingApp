@@ -39,7 +39,7 @@ class Category < ApplicationRecord
 
   def self.find_subcategories_by_id(category_id)
     category = Category.find_by_id(category_id)
-    category.subcategories.where(category_id: category_id)
+    category.subcategories.all
   end
 end
 

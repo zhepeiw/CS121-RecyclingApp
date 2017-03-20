@@ -4,6 +4,6 @@ class CategoriesController < ApplicationController
 
   def show
     # queries of categoreis
-    @category = Category.find_by_id(1)
+    @category = Category.find_by_id(params[:id])
   end
 end
