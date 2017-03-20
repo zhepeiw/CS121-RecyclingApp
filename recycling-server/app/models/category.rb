@@ -36,6 +36,11 @@ class Category < ApplicationRecord
        }
    })
   end
+
+  def self.find_subcategories_by_id(category_id)
+    category = Category.find_by_id(category_id)
+    category.subcategories.where(category_id: category_id)
+  end
 end
 
 unless Category.__elasticsearch__.index_exists?
