@@ -14,6 +14,7 @@ machine:
   services:
     - docker
     - mysql
+    - elasticsearch
 
 dependencies:
   pre:
@@ -23,7 +24,6 @@ dependencies:
   post:
     - docker info
     - docker build -t zhzhang2012/cs121-recycling-server-prod:$CIRCLE_SHA1 ./recycling-server
-    - docker run -d -p 9200:9200 --name search-elastic-test docker.elastic.co/elasticsearch/elasticsearch:5.2.2
 
 database:
   pre:
