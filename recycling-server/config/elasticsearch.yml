@@ -1,0 +1,18 @@
+# Environment-specific configurations for
+# ElasticSearch service
+default: &default
+  port: 9200
+  user: elastic
+  password: changeme
+
+development:
+  <<: *default
+  hostname: search
+
+test:
+  <<: *default
+  hostname: 127.0.0.1
+
+production:
+  <<: *default
+  hostname: search
