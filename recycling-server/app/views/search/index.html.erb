@@ -1,32 +1,43 @@
 <%= render partial: "layouts/nav", locals: {items: ["Categories", "Facilities", "Contact"], shouldShow: true} %>
 
-<section class="results-container">
-  <ul>
-    <% @results.each do |result| %>
-      <div class="media">
-        <img class="d-flex mr-3" src=<%= result.image_link %> alt="Generic placeholder image">
-        <div class="media-body">
-          <h5 class="mt-0"><%= result.name %></h5>
-          <%= result.description %>
-        </div>
-      </div>
+<section class="cities-container">
+  <ul class="list-unstyled">
+    <% @cities.each do |city| %>
+      <li>
+        <a href="/cities/<%= city.id %>" class="panel panel-default">
+          <div class="panel-body">
+            <div class="media">
+              <%= image_tag "cities/#{city.image_link}", class: "d-flex mr-3" %>
+              <div class="media-body">
+                <h5 class="mt-0"><%= city.name %></h5>
+                <%= city.description %>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
     <% end %>
   </ul>
 </section>
 
-<section class="results-container">
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-    </thead>
-    <% @results.each do |result| %>
-      <tr>
-        <td><%= result.name %></td>
-        <td><%= result.description %></td>
-      </tr>
+<section class="categories-container">
+  <ul class="list-unstyled">
+    <% @categories.each do |category| %>
+      <li>
+        <a href="/categories/<%= category.id %>" class="panel panel-default">
+          <div class="panel-body">
+            <div class="media">
+              <%= image_tag "categories/thumbnails/#{category.image_link}", class: "d-flex mr-3" %>
+              <div class="media-body">
+                <h5 class="mt-0"><%= category.name %></h5>
+                <%= category.description %>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
     <% end %>
-  </table>
+  </ul>
 </section>
+
+<%= render partial: "layouts/footer" %>
