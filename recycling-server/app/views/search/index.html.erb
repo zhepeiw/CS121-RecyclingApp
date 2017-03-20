@@ -1,0 +1,32 @@
+<%= render partial: "layouts/nav", locals: {items: ["Categories", "Facilities", "Contact"], shouldShow: true} %>
+
+<section class="results-container">
+  <ul>
+    <% @results.each do |result| %>
+      <div class="media">
+        <img class="d-flex mr-3" src=<%= result.image_link %> alt="Generic placeholder image">
+        <div class="media-body">
+          <h5 class="mt-0"><%= result.name %></h5>
+          <%= result.description %>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+</section>
+
+<section class="results-container">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.name %></td>
+        <td><%= result.description %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
