@@ -1,0 +1,26 @@
+<%= render partial: "layouts/nav", locals: {items: ["Categories", "Facilities", "Contact"], shouldShow: true} %>
+<header>
+  <div class="header-content">
+    <div class="header-content-inner">
+      <h1 id="homeHeading">Results</h1>
+      <hr>
+    </div>
+  </div>
+</header>
+
+<section class="results-container">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.name %></td>
+        <td><%= result.description %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
