@@ -8,7 +8,7 @@
       "memory": 256,
       "links": [
         "search"
-      ]
+      ],
       "environment": [
         {
           "name": "RAILS_ENV",
