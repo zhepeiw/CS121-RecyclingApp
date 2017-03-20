@@ -14,7 +14,7 @@ categoryList = [
 	["Plastic", "", "plastic.jpg", 1],
 	["Metal", "", "metal.jpg", 1],
 	["Oil", "", "oil.jpg", 5],
-	["Electronics", "", "", 4]
+	["Electronics", "", "electronics.jpg", 4]
 ]
 
 categoryList.each do |name, description, image_link, recycle_class|
