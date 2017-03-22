@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  get 'developers/index'
   get 'search/index'
-
   get 'welcome/index'
 
   resources :cities

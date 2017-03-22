@@ -215,6 +215,9 @@ header .header-content .header-content-inner p {
     .city-header {
         min-height: 50%
     }
+    .developers-header {
+        min-height: 50%;
+    }
     /*header{*/
         /*min-height: 100%*/
     /*}*/
