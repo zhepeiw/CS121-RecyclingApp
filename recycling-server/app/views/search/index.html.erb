@@ -1,42 +1,60 @@
 <%= render partial: "layouts/nav", locals: {items: ["Categories", "Facilities", "Contact"], shouldShow: true} %>
 
-<section class="cities-container">
+<section class="results-container">
+  <h3>Cities</h3>
   <ul class="list-unstyled">
-    <% @cities.each do |city| %>
-      <li>
-        <a href="/cities/<%= city.id %>" class="panel panel-default">
-          <div class="panel-body">
-            <div class="media">
-              <%= image_tag "cities/#{city.image_link}", class: "d-flex mr-3" %>
-              <div class="media-body">
-                <h5 class="mt-0"><%= city.name %></h5>
-                <%= city.description %>
+    <% if @cities.size == 0 %>
+      <div class="no-results">No results</div>
+    <% else %>
+      <% @cities.each do |city| %>
+        <li class="result-list-item">
+          <a href="/cities/<%= city.id %>" class="black-link">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <%= image_tag "cities/#{city.image_link}", class: "media-object result-image" %>
+                  </div>
+                  <div class="media-body">
+                    <h5><b><%= city.name %></b></h5>
+                    <%= city.description %>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
-      </li>
+          </a>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 </section>
 
-<section class="categories-container">
+<section class="results-container">
+  <h3>Categories</h3>
   <ul class="list-unstyled">
-    <% @categories.each do |category| %>
-      <li>
-        <a href="/categories/<%= category.id %>" class="panel panel-default">
-          <div class="panel-body">
-            <div class="media">
-              <%= image_tag "categories/thumbnails/#{category.image_link}", class: "d-flex mr-3" %>
-              <div class="media-body">
-                <h5 class="mt-0"><%= category.name %></h5>
-                <%= category.description %>
+    <% if @categories.size == 0 %>
+      <h5 class="no-results">No results</h5>
+    <% else %>
+      <% @categories.each do |category| %>
+        <li class="result-list-item">
+          <a href="/categories/<%= category.id %>" class="black-link">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <%= image_tag "categories/thumbnails/#{category.image_link}", class: "media-object result-image" %>
+                  </div>
+                  <div class="media-body">
+                    <h5><b><%= category.name %></b></h5>
+                    <%= category.description %>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
-      </li>
-    <% end %>
+          </a>
+        </li>
+      <% end %>
+    <%end %>
   </ul>
 </section>
 
