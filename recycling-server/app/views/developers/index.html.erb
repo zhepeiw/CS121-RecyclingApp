@@ -1,4 +1,4 @@
-<%= render partial: "layouts/nav", locals: {items: [], shouldShow: true} %>
+<%= render partial: "layouts/nav", locals: {items: [], shouldShow: true, shouldShowDevelopers: false} %>
 <header class="developers-header">
   <div class="header-content">
     <div class="header-content-inner">
@@ -10,9 +10,26 @@
 
 <section>
 	<div class="container">
-		<h1>Public APIs</h1>
-		<h3>api/v1/cities</h3>
-		<h5>
+		<h2>Public APIs</h2>
+		<br>
+
+		<table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>Name</th>
+            <th>Method</th>
+            <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>api/v1/cities/:id</td>
+          <td>GET</td>
+          <td>Get the city by city id</td>
+        </tr>
+      </tbody>
+    </table>
 	</div>
 
 </section>

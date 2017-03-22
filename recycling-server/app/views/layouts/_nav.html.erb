@@ -16,6 +16,11 @@
                 <a class="page-scroll" href="#<%= item.downcase %>"><%= item %></a>
               </li>
           <% end %>
+          <% if shouldShowDevelopers %>
+            <li>
+              <a class="page-scroll" href="/developers/index">Developers</a>>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
