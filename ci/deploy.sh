@@ -15,9 +15,12 @@ RDS_DB_PROD_PORT=3306
 SHA1=$1
 EB_BUCKET=cs121-recycling-server-core
 ASSET_BUCKET=cs121-recycling-server-assets
-DOCKERRUN_FILE=$SHA1-Dockerrun.aws.json
+DOCKERRUN_FILE=Dockerrun.aws.json
 APPLICATION_NAME=cs121-recycling-app
 ENVIRONMENT_NAME=cs121-recycling-server-prod
+
+SOURCE_BUNDLE_NAME=cs121-recycling-server-source-bundle
+HASHED_SOURCE_BUNDLE_NAME=$SHA1-$SOURCE_BUNDLE_NAME
 
 # Construct production configuration files from
 # production environment variables and templates.
@@ -32,12 +35,6 @@ construct_prod_configs() {
       -e "s@<RAILS_ASSET_HOST>@$RAILS_ASSET_HOST@" \
       < $1 > $2
 }
-
-## Note(tony): Temporarily disable S3 upload to avoid costs, Wait for next month
-## Note2(tony): can't do this since production will crash. Fuck rails.
-#aws s3 rm s3://$ASSET_BUCKET/assets --recursive
-#aws s3 cp --recursive $ASSET_DIR s3://$ASSET_BUCKET/assets --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-#printf "Finished updating assets\n"
 
 # Set working directory for the script to /ci
 cd "$(dirname "$0")"
@@ -58,18 +55,27 @@ printf "Finished configuring awscli\n\n"
 printf "Build Dockerrun file...\n"
 construct_prod_configs Dockerrun.aws.json.template $DOCKERRUN_FILE
 
-printf "Uploading Dockerrun file to S3...\n"
-aws s3 cp $DOCKERRUN_FILE s3://$EB_BUCKET/$DOCKERRUN_FILE
-printf "Finished uploading Dockerrun file to S3\n\n"
+printf "Build source bundle for deployment..."
+zip -r "$SOURCE_BUNDLE_NAME.zip" .ebextensions/ $DOCKERRUN_FILE
+
+printf "Uploading source bundle to S3...\n"
+aws s3 cp "$SOURCE_BUNDLE_NAME.zip" s3://$EB_BUCKET/$HASHED_SOURCE_BUNDLE_NAME.zip
+printf "Finished uploading source bundle to S3\n\n"
 
 printf "Start deploying to ElasticBeanstalk..."
 aws elasticbeanstalk create-application-version --application-name $APPLICATION_NAME \
-    --version-label $SHA1 --source-bundle S3Bucket=$EB_BUCKET,S3Key=$DOCKERRUN_FILE
+    --version-label $SHA1 --source-bundle S3Bucket=$EB_BUCKET,S3Key=$HASHED_SOURCE_BUNDLE_NAME.zip
 
 # Update Elastic Beanstalk environment to new version
 aws elasticbeanstalk update-environment --environment-name $ENVIRONMENT_NAME \
     --version-label $SHA1
 printf "\n\n"
+
+## Note(tony): Temporarily disable S3 upload to avoid costs, Wait for next month
+## Note2(tony): can't do this since production will crash. Fuck rails.
+aws s3 rm s3://$ASSET_BUCKET/assets --recursive
+aws s3 cp --recursive $ASSET_DIR s3://$ASSET_BUCKET/assets --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+printf "Finished updating assets\n"
 
 printf "#######################\n"
 printf "# Finished deployment #\n"
