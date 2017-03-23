@@ -36,6 +36,12 @@ construct_prod_configs() {
       < $1 > $2
 }
 
+## Note(tony): Temporarily disable S3 upload to avoid costs, Wait for next month
+## Note2(tony): can't do this since production will crash. Fuck rails.
+#aws s3 rm s3://$ASSET_BUCKET/assets --recursive
+#aws s3 cp --recursive $ASSET_DIR s3://$ASSET_BUCKET/assets --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+#printf "Finished updating assets\n"
+
 # Set working directory for the script to /ci
 cd "$(dirname "$0")"
 echo "CI dir is: $(pwd)"
@@ -70,12 +76,6 @@ aws elasticbeanstalk create-application-version --application-name $APPLICATION_
 aws elasticbeanstalk update-environment --environment-name $ENVIRONMENT_NAME \
     --version-label $SHA1
 printf "\n\n"
-
-## Note(tony): Temporarily disable S3 upload to avoid costs, Wait for next month
-## Note2(tony): can't do this since production will crash. Fuck rails.
-aws s3 rm s3://$ASSET_BUCKET/assets --recursive
-aws s3 cp --recursive $ASSET_DIR s3://$ASSET_BUCKET/assets --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-printf "Finished updating assets\n"
 
 printf "#######################\n"
 printf "# Finished deployment #\n"
