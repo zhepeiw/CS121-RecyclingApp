@@ -60,7 +60,7 @@
       "name": "search",
       "image": "docker.elastic.co/elasticsearch/elasticsearch:5.2.2",
       "essential": true,
-      "memory": 256,
+      "memory": 768,
       "environment": [
         {
           "name": "cluster.name",
