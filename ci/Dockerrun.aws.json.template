@@ -80,6 +80,19 @@
           "hostPort": 9200,
           "containerPort": 9200
         }
+      ],
+      "privileged": true,
+      "ulimits": [
+        {
+          "name": "nofile",
+          "softLimit": 65536,
+          "hardLimit": 65536
+        },
+        {
+          "name": "memlock",
+          "softLimit": -1,
+          "hardLimit": -1
+        }
       ]
     }
   ]
