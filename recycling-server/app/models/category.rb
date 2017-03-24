@@ -16,7 +16,7 @@ class Category < ApplicationRecord
        query: {
            multi_match: {
                query: query,
-               fields: [ "name^2", "recycle_class"],
+               fields: [ "name^2"],
                fuzziness: 1
            }
        },

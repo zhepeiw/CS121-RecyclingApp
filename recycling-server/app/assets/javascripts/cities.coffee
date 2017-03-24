@@ -3,6 +3,15 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
+
+  $('.flexslider').flexslider({
+    animation: "slide",
+    animationLoop: false,
+    itemWidth: 200,
+    minItems: 3,
+    maxItems: 5,
+  })
+
   $('#category-paper-details').addClass('category-details-active');
 
   $('.city-slider-container button').click ->

@@ -1,8 +1,8 @@
 class SearchController < ApplicationController
   def index
     # Search twice
-    @cities = Elasticsearch::Model.search(params[:q], [City]).results.to_a
-    @categories = Elasticsearch::Model.search(params[:q], [Category]).results.to_a
+    @cities = City.search(params[:q]).results.to_a
+    @categories = Category.search(params[:q]).results.to_a
     
     # Present search result sample calls
     # puts @results.length
