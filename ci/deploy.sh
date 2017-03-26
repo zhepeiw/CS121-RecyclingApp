@@ -38,9 +38,9 @@ construct_prod_configs() {
 
 ## Note(tony): Temporarily disable S3 upload to avoid costs, Wait for next month
 ## Note2(tony): can't do this since production will crash. Fuck rails.
-#aws s3 rm s3://$ASSET_BUCKET/assets --recursive
-#aws s3 cp --recursive $ASSET_DIR s3://$ASSET_BUCKET/assets --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-#printf "Finished updating assets\n"
+aws s3 rm s3://$ASSET_BUCKET/assets --recursive
+aws s3 cp --recursive $ASSET_DIR s3://$ASSET_BUCKET/assets --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+printf "Finished updating assets\n"
 
 # Set working directory for the script to /ci
 cd "$(dirname "$0")"
