@@ -5,7 +5,7 @@
       "name": "server",
       "image": "zhzhang2012/cs121-recycling-server-prod:<TAG>",
       "essential": true,
-      "memory": 128,
+      "memory": 256,
       "links": [
         "search"
       ],
@@ -60,7 +60,7 @@
       "name": "search",
       "image": "docker.elastic.co/elasticsearch/elasticsearch:5.2.2",
       "essential": true,
-      "memory": 400,
+      "memory": 1024,
       "environment": [
         {
           "name": "cluster.name",
@@ -72,7 +72,7 @@
         },
         {
           "name": "ES_JAVA_OPTS",
-          "value": "-Xms128m -Xmx128m"
+          "value": "-Xms512m -Xmx512m"
         }
       ],
       "portMappings": [
