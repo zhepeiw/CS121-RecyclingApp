@@ -35,5 +35,5 @@ RUN bundle install
 ADD . /srv/server
 
 # Start rails server
-CMD [ "bundle", "exec", "rails", "s", "-p", "3000" ]
+CMD [ "./wait-for-it.sh", "search:9200", "-t", "120", "--", "bundle", "exec", "rails", "s", "-p", "3000" ]
 EXPOSE 3000
