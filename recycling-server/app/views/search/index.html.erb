@@ -4,7 +4,7 @@
   <h3>Cities</h3>
   <ul class="list-unstyled">
     <% if @cities.size == 0 %>
-      <div class="no-results">No results</div>
+      <h5 class="no-results">No results</h5>
     <% else %>
       <% @cities.each do |city| %>
         <li class="result-list-item">
@@ -47,6 +47,32 @@
                   <div class="media-body">
                     <h5><b><%= category.name %></b></h5>
                     <%= category.description %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      <% end %>
+    <%end %>
+  </ul>
+</section>
+
+<section class="results-container">
+  <h3>Subcategories</h3>
+  <ul class="list-unstyled">
+    <% if @subcategories.size == 0 %>
+      <h5 class="no-results">No results</h5>
+    <% else %>
+      <% @subcategories.each do |subcategory| %>
+        <li class="result-list-item">
+          <a href="/categories/<%= subcategory.category_id %>" class="black-link">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-body">
+                    <h5><b><%= subcategory.name %></b></h5>
+                    <%= subcategory.description %>
                   </div>
                 </div>
               </div>
