@@ -22,6 +22,7 @@ gem 'coffee-rails', '~> 4.2'
 
 # Devise
 gem 'devise'
+gem 'devise-bootstrap-views'
 
 # Elasticsearch
 gem 'elasticsearch-model'
