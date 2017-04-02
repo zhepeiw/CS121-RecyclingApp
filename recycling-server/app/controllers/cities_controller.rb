@@ -10,5 +10,10 @@ class CitiesController < ApplicationController
     @categories = Category.all
     @facilities = City.find_facilities_by_city(1)
   end
+
+  def new
+    @city = City.new
+    @categories = Category.all
+  end
 end
  
