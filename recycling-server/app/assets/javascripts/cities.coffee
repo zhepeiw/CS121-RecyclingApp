@@ -23,8 +23,10 @@ $(document).ready ->
       $(".chosen-select-category").trigger('chosen:updated')
       selectedCategories = $(event.target).val()
       $('.subcategory-selector').removeClass('active')
-      selectedCategories.forEach((categoryId) ->
-        $("#subcategory-selector-#{categoryId}").addClass('active'))
+
+      if selectedCategories.length > 0
+        selectedCategories.forEach((categoryId) ->
+          $("#subcategory-selector-#{categoryId}").addClass('active'))
     )
 
   $(".chosen-select-subcategory")
@@ -38,3 +40,26 @@ $(document).ready ->
       paramName: "city[image_link]",
       addRemoveLinks: false
   })
+
+  numFacilities = 1
+
+  $("#add-facility").click(() ->
+    $("#facility-#{numFacilities}").html("""
+      <td>#{numFacilities+1}</td>
+      <td>
+          <input  name='facility-name-#{numFacilities}' type='text' placeholder='Name'  class='form-control input-md'>
+      </td>
+      <td>
+          <input  name='facility-location#-#{numFacilities}' type='text' placeholder='Location'  class='form-control input-md'>
+      </td>
+      """)
+
+    ++numFacilities
+    $('#facilities-table').append("<tr id='facility-#{numFacilities}'></tr>")
+  )
+
+  $("#delete-facility").click(() ->
+    if numFacilities > 1
+      --numFacilities
+      $("#facility-#{numFacilities}").html('')
+  )
