@@ -32,6 +32,11 @@ gem 'elasticsearch-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-rails'
 gem 'flexslider'
+gem 'dropzonejs-rails'
+gem 'chosen-rails'
+
+# File upload
+gem 'carrierwave'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

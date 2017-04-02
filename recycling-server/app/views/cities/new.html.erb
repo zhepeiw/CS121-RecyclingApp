@@ -1,0 +1,103 @@
+<%= render partial: "layouts/nav", locals: {items: ["Contact"], shouldShow: true, shouldShowDevelopers: false, useFixedNav: true} %>
+
+<section class="city-new-container">
+  <div class="col-10 col-sm-10 col-md-6 col-offset-1 col-sm-offset-1 col-md-offset-3">
+    <div class="text-center">
+      <h2 class="section-heading">Create new city</h2>
+      <hr class="primary">
+    </div>
+
+    <div class="city-form-container form-horizontal">
+      <%= form_for @city, url: { action: 'create' } do |f| %>
+          <div class="form-group">
+            <%= label_tag :city_name, 'Name: ', class: 'col-sm-2 control-label item' %>
+            <div class="col-sm-10">
+              <%= f.text_field :name, class: 'form-control', name: :city_name, placeholder: 'Name of the city' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag :city_description, 'Description: ', class: 'col-sm-2 control-label item' %>
+            <div class="col-sm-10">
+              <%= f.text_area :description, rows: 5, class: 'form-control',
+                              name: :city_description, placeholder: 'A short description of the city' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag :categories, 'Categories: ', class: 'col-sm-2 control-label item' %>
+            <div class="col-sm-10">
+              <%= select_tag('category', options_from_collection_for_select(Category.all, :id, :name),
+                             { multiple: '',
+                               'data-placeholder': 'Choose categories...',
+                               include_blank: true,
+                               class: 'chosen-select-category' })
+              %>
+            </div>
+          </div>
+
+          <% @categories.each do |category| %>
+              <div class="form-group subcategory-selector" id="subcategory-selector-<%= category.id %>">
+                <%= label_tag :subcategories, "Subcategories for #{category.name}:", class: 'col-sm-2 control-label item' %>
+                <div class="col-sm-10">
+                  <%= select_tag('category',
+                                 options_from_collection_for_select(category.subcategories, :id, :name),
+                                 { multiple: '',
+                                   'data-placeholder': "Choose subcategories for #{category.name.downcase}...",
+                                   include_blank: true,
+                                   class: 'chosen-select-subcategory' })
+                  %>
+                </div>
+              </div>
+          <% end %>
+
+          <div class="form-group">
+            <%= label_tag :facilities, 'Facilities: ', class: 'col-sm-2 control-label item' %>
+            <div class="col-sm-10">
+              <div class="row clearfix">
+                <div class="col-md-12 column">
+                  <table class="table table-bordered" id="facilities-table">
+                    <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th class="text-center">Name</th>
+                      <th class="text-center">Location</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id='facility-0'>
+                      <td>1</td>
+                      <td><input type="text" name='facility-name-0'  placeholder='Name' class="form-control"/></td>
+                      <td><input type="text" name='facility-location-0' placeholder='Location' class="form-control"/></td>
+                    </tr>
+                    <tr id='facility-1'></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button type="button" id='delete-facility' class="pull-right btn btn-default">Delete Facility</button>
+                <button type="button" id="add-facility" class="pull-right btn btn-default">Add Facility</button>
+              </div>
+            </div>
+          </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= label_tag :image_link, 'Background image: ', class: 'col-sm-2 control-label item' %>
+        <%= form_tag '/cities', method: :post, class: 'col-10 col-sm-10 dropzone city-background-uploader', id: 'background-dropzone' do %>
+            <div class="fallback">
+              <%= file_field_tag 'image', multipart: true %>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-primary item">Create</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<%= render partial: "layouts/footer" %>
