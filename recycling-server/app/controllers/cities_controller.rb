@@ -1,6 +1,8 @@
 require 'elasticsearch/model'
 
 class CitiesController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
+
   def index
 
   end
