@@ -32,15 +32,6 @@ $(document).ready ->
   $(".chosen-select-subcategory")
     .chosen({ width: "100%" })
 
-  Dropzone.autoDiscover = false
-
-  dropzone = new Dropzone(".dropzone", {
-      url: "/cities",
-      maxFilesize: 256,
-      paramName: "city[image_link]",
-      addRemoveLinks: false
-  })
-
   numFacilities = 1
 
   $("#add-facility").click(() ->
@@ -117,3 +108,13 @@ $(document).ready ->
       return
     return
   return
+
+  # dropzone
+  Dropzone.autoDiscover = false
+
+  dropzone = new Dropzone(".dropzone", {
+    url: "/cities",
+    maxFilesize: 256,
+    paramName: "city[image_link]",
+    addRemoveLinks: false
+  })
