@@ -64,6 +64,11 @@
 </section>
 
 <section class="facility-map">
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+  </script>
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaWUYyz0sFWLlxktQUuGQtj0Hmg1QMEIk&callback=initMap">
+  </script>
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
@@ -73,83 +78,83 @@
     </div>
   </div>
   <div id="map"></div>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-  <script>
-    function initMap() {
-      var geocoder = new google.maps.Geocoder();
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12
-      });
-      var centerDidSet = false
-
-      var infoWindow = new google.maps.InfoWindow;
-
-      // Add a marker clusterer to manage the markers.
-      var markerCluster = new MarkerClusterer(map, null,
-        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
-      var url = window.location.href;
-      var id = url.split("/").pop().split("?")[0]
-      var getURL = "../api/v1/cities/" + id + "/facilities"
-      $.getJSON(getURL, function(data) {
-        var facilities = data["facilities"]
-        facilities.map(function(facility) {
-          var name = facility["name"];
-          var streetAddress = facility["street_address"];
-          var zipcode = facility["zipcode"];
-          var phoneNumber = facility["phone_number"];
-          var website = facility["website"];
-          geocoder.geocode({address: streetAddress}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-              var location = results[0].geometry.location;
-              if (!centerDidSet) {
-                map.setCenter(location);
-                centerDidSet = true
-              }
-
-              var marker = new google.maps.Marker({
-                position: location,
-              });
-
-              var infowincontent = document.createElement('div');
-              var titleElement = document.createElement('strong');
-              titleElement.textContent = name
-              infowincontent.appendChild(titleElement);
-              infowincontent.appendChild(document.createElement('br'));
-              if (phoneNumber != null) {
-                var phoneElement = document.createElement('text');
-                phoneElement.textContent = phoneNumber
-                infowincontent.appendChild(phoneElement);
-                infowincontent.appendChild(document.createElement('br'));
-              }
-              if (website != null) {
-                var websiteElement = document.createElement('a');
-                websiteElement.textContent = website
-                websiteElement.href = "http://" + website
-                infowincontent.appendChild(websiteElement);
-                infowincontent.appendChild(document.createElement('br'));
-              }
-              var addressElement = document.createElement('text');
-              addressElement.textContent = streetAddress
-              infowincontent.appendChild(addressElement);
-
-              marker.addListener('click', function() {
-                infoWindow.setContent(infowincontent);
-                infoWindow.open(map, marker);
-              });
-
-              markerCluster.addMarker(marker);
-            }
-          });
-        });
-      });
-    }
-  </script>
-  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-  </script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaWUYyz0sFWLlxktQUuGQtj0Hmg1QMEIk&callback=initMap">
-  </script>
+  <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>-->
+  <!--&lt;!&ndash;<script>&ndash;&gt;-->
+<!--//    function initMap() {-->
+<!--//      var geocoder = new google.maps.Geocoder();-->
+<!--//      var map = new google.maps.Map(document.getElementById('map'), {-->
+<!--//        zoom: 12-->
+<!--//      });-->
+<!--//      var centerDidSet = false-->
+<!--//-->
+<!--//      var infoWindow = new google.maps.InfoWindow;-->
+<!--//-->
+<!--//      // Add a marker clusterer to manage the markers.-->
+<!--//      var markerCluster = new MarkerClusterer(map, null,-->
+<!--//        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});-->
+<!--//-->
+<!--//      var url = window.location.href;-->
+<!--//      var id = url.split("/").pop().split("?")[0]-->
+<!--//      var getURL = "../api/v1/cities/" + id + "/facilities"-->
+<!--//      $.getJSON(getURL, function(data) {-->
+<!--//        var facilities = data["facilities"]-->
+<!--//        facilities.map(function(facility) {-->
+<!--//          var name = facility["name"];-->
+<!--//          var streetAddress = facility["street_address"];-->
+<!--//          var zipcode = facility["zipcode"];-->
+<!--//          var phoneNumber = facility["phone_number"];-->
+<!--//          var website = facility["website"];-->
+<!--//          geocoder.geocode({address: streetAddress}, function(results, status) {-->
+<!--//            if (status == google.maps.GeocoderStatus.OK) {-->
+<!--//              var location = results[0].geometry.location;-->
+<!--//              if (!centerDidSet) {-->
+<!--//                map.setCenter(location);-->
+<!--//                centerDidSet = true-->
+<!--//              }-->
+<!--//-->
+<!--//              var marker = new google.maps.Marker({-->
+<!--//                position: location,-->
+<!--//              });-->
+<!--//-->
+<!--//              var infowincontent = document.createElement('div');-->
+<!--//              var titleElement = document.createElement('strong');-->
+<!--//              titleElement.textContent = name-->
+<!--//              infowincontent.appendChild(titleElement);-->
+<!--//              infowincontent.appendChild(document.createElement('br'));-->
+<!--//              if (phoneNumber != null) {-->
+<!--//                var phoneElement = document.createElement('text');-->
+<!--//                phoneElement.textContent = phoneNumber-->
+<!--//                infowincontent.appendChild(phoneElement);-->
+<!--//                infowincontent.appendChild(document.createElement('br'));-->
+<!--//              }-->
+<!--//              if (website != null) {-->
+<!--//                var websiteElement = document.createElement('a');-->
+<!--//                websiteElement.textContent = website-->
+<!--//                websiteElement.href = "http://" + website-->
+<!--//                infowincontent.appendChild(websiteElement);-->
+<!--//                infowincontent.appendChild(document.createElement('br'));-->
+<!--//              }-->
+<!--//              var addressElement = document.createElement('text');-->
+<!--//              addressElement.textContent = streetAddress-->
+<!--//              infowincontent.appendChild(addressElement);-->
+<!--//-->
+<!--//              marker.addListener('click', function() {-->
+<!--//                infoWindow.setContent(infowincontent);-->
+<!--//                infoWindow.open(map, marker);-->
+<!--//              });-->
+<!--//-->
+<!--//              markerCluster.addMarker(marker);-->
+<!--//            }-->
+<!--//          });-->
+<!--//        });-->
+<!--//      });-->
+<!--//    }-->
+  <!--&lt;!&ndash;</script>&ndash;&gt;-->
+  <!--<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">-->
+  <!--</script>-->
+  <!--<script async defer-->
+  <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaWUYyz0sFWLlxktQUuGQtj0Hmg1QMEIk&callback=initMap">-->
+  <!--</script>-->
 </section>
 
 <%= render partial: "layouts/footer" %>
