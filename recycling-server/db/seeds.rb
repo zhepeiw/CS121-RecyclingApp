@@ -83,11 +83,11 @@ end
 
 # city seed 
 cityList = [
-	["Claremont", "California", "91711", "Claremont is a city on the eastern edge of Los Angeles County, California, United States, 30.3 miles (48.8 km) east of downtown Los Angeles. Claremont is home to the world famous Harvey Mudd College.", "claremont.jpg"]
+	["Claremont", "California", "91711", "Claremont is a city on the eastern edge of Los Angeles County, California, United States, 30.3 miles (48.8 km) east of downtown Los Angeles. Claremont is home to the world famous Harvey Mudd College.", "claremont.jpg", "1", "http://www.ci.claremont.ca.us/government/departments-divisions/community-services/trash-and-recycling"]
 ]
 
-cityList.each do |name, state, zipcode, description, image_link|
-	City.create(name: name, state: state, zipcode: zipcode, description: description, image_link: image_link)
+cityList.each do |name, state, zipcode, description, image_link, uid, website|
+	City.create(name: name, state: state, zipcode: zipcode, description: description, image_link: image_link, uid: uid, website: website)
 end
 
 # recycle seed

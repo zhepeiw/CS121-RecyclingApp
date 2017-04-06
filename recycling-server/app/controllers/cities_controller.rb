@@ -22,20 +22,26 @@ class CitiesController < ApplicationController
 
   def create
     @city = City.new(permit_city)
-    if @city.save
-      puts @city
+    categories = Category.all
 
+    if @city.save
       # Construct subcategories and save them to recycles
-      @city.subcategories.each do |subcategory|
-        if subcategory != ''
-          @recycle = Recycle.new({ :city_id => @city.id,
-                                   :subcategory_id => subcategory })
-          if @recycle.save
-            flash[:success] = "Success!"
-            redirect_to city_path(@city)
+      categories.each do |category|
+        params[:city][:recycle]["#{category.id}"].each do |subcategory_id|
+          if subcategory_id.present?
+            @recycle = Recycle.new({ :city_id => @city.id,
+                                     :subcategory_id => subcategory_id })
+            if !@recycle.save
+              flash[:error] = @city.errors.full_messages
+              redirect_to new_city_path
+            end
           end
         end
       end
+
+      flash[:success] = "Success!"
+      redirect_to city_path(@city)
+
     else
       flash[:error] = @city.errors.full_messages
       redirect_to new_city_path
@@ -45,11 +51,14 @@ class CitiesController < ApplicationController
   private
 
   def permit_city
-    params.require(:city).permit(:name,
+    params.require(:city).permit(:uid,
+                                 :name,
                                  :state,
                                  :zipcode,
+                                 :website,
                                  :description,
                                  :image_link,
+                                 :recycle,
                                  facilities_attributes: [
                                      :id,
                                      :name,
