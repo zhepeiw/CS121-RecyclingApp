@@ -41,7 +41,8 @@ $(document).ready ->
           <input  name='facility-name-#{numFacilities}' type='text' placeholder='Name'  class='form-control input-md'>
       </td>
       <td>
-          <input  name='facility-location#-#{numFacilities}' type='text' placeholder='Location'  class='form-control input-md'>
+          <input  name='facility-location#-#{numFacilities}' type='text' placeholder='Location' \
+          class='form-control input-md'>
       </td>
       """)
 
@@ -55,13 +56,15 @@ $(document).ready ->
       $("#facility-#{numFacilities}").html('')
   )
 
+  # googleMap API
   initMap = ->
   geocoder = new (google.maps.Geocoder)
   map = new (google.maps.Map)(document.getElementById('map'), zoom: 12)
   centerDidSet = false
   infoWindow = new (google.maps.InfoWindow)
   # Add a marker clusterer to manage the markers.
-  markerCluster = new MarkerClusterer(map, null, imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m')
+  markerCluster = new MarkerClusterer(map, null, \
+    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m')
   url = window.location.href
   id = url.split('/').pop().split('?')[0]
   getURL = '../api/v1/cities/' + id + '/facilities'
