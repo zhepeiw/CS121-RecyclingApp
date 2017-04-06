@@ -7,6 +7,9 @@ class City < ApplicationRecord
   has_many :has_facilities
   has_many :facilities, through: :has_facilities
 
+  accepts_nested_attributes_for :recycles
+  accepts_nested_attributes_for :facilities
+
   # Search prereq
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks

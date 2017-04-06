@@ -32,25 +32,33 @@ $(document).ready ->
   $(".chosen-select-subcategory")
     .chosen({ width: "100%" })
 
-  Dropzone.autoDiscover = false
-
-  dropzone = new Dropzone(".dropzone", {
-      url: "/cities",
-      maxFilesize: 256,
-      paramName: "city[image_link]",
-      addRemoveLinks: false
-  })
-
   numFacilities = 1
 
   $("#add-facility").click(() ->
+    genIdAndNameForField = (fieldName) ->
+      id: "city_facilities_attributes_#{numFacilities}_#{fieldName}"
+      name: "city[facilities_attributes][#{numFacilities}][#{fieldName}]"
+
+    { id: nameId, name: nameName } = genIdAndNameForField("name")
+    { id: addressId, name: addressName } = genIdAndNameForField("street_address")
+    { id: websiteId, name: websiteName } = genIdAndNameForField("website")
+
     $("#facility-#{numFacilities}").html("""
       <td>#{numFacilities+1}</td>
       <td>
-          <input  name='facility-name-#{numFacilities}' type='text' placeholder='Name'  class='form-control input-md'>
+          <input type="text"
+                 id='#{nameId}' name='#{nameName}'
+                 placeholder='Name'  class='form-control input-md'>
       </td>
       <td>
-          <input  name='facility-location#-#{numFacilities}' type='text' placeholder='Location'  class='form-control input-md'>
+          <input type="text"
+                 id='#{addressId}' name='#{addressName}'
+                 placeholder='Name'  class='form-control input-md'>
+      </td>
+      <td>
+          <input type="text"
+                 id='#{websiteId}' name='#{websiteName}'
+                 placeholder='Name'  class='form-control input-md'>
       </td>
       """)
 
@@ -63,3 +71,12 @@ $(document).ready ->
       --numFacilities
       $("#facility-#{numFacilities}").html('')
   )
+
+  Dropzone.autoDiscover = false
+
+  dropzone = new Dropzone(".dropzone", {
+    url: "/cities",
+    maxFilesize: 256,
+    paramName: "city[image_link]",
+    addRemoveLinks: false
+  })
