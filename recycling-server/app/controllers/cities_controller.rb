@@ -16,17 +16,17 @@ class CitiesController < ApplicationController
   def new
     @city = City.new
     @city.facilities.build
+    @city.city_contacts.build
 
     @categories = Category.all
   end
 
   def create
     @city = City.new(permit_city)
-    categories = Category.all
 
     if @city.save
       # Construct subcategories and save them to recycles
-      categories.each do |category|
+      Category.all.each do |category|
         params[:city][:recycle]["#{category.id}"].each do |subcategory_id|
           if subcategory_id.present?
             @recycle = Recycle.new({ :city_id => @city.id,
@@ -43,6 +43,8 @@ class CitiesController < ApplicationController
       redirect_to city_path(@city)
 
     else
+      puts @city.errors.full_messages
+      puts @city.errors.inspect
       flash[:error] = @city.errors.full_messages
       redirect_to new_city_path
     end
@@ -58,13 +60,21 @@ class CitiesController < ApplicationController
                                  :website,
                                  :description,
                                  :image_link,
-                                 :recycle,
-                                 facilities_attributes: [
+                                 {
+                                   recycle: [],
+                                   files: [],
+                                   city_contacts_attributes: [
+                                     :id,
+                                     :name,
+                                     :contact
+                                   ],
+                                   facilities_attributes: [
                                      :id,
                                      :name,
                                      :street_address,
                                      :website
-                                 ])
+                                   ]
+                                 })
   end
 end
  
