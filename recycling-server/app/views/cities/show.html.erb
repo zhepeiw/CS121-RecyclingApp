@@ -1,9 +1,9 @@
 <%= render partial: "layouts/nav", locals: {items: ["Categories", "Facilities", "Contact"], shouldShow: true, shouldShowDevelopers: false, useFixedNav: false} %>
 <header class="city-header"
-        style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path "cities/#{@city.image_link}" %>)">
+        style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path "#{@city.image_link}" %>)">
   <div class="header-content">
     <div class="header-content-inner">
-      <h1 id="homeHeading">Claremont</h1>
+      <h1 id="homeHeading"><%= @city.name %></h1>
       <hr>
     </div>
   </div>

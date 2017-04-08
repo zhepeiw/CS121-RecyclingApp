@@ -6,6 +6,15 @@ class City < ApplicationRecord
   has_many :subcategories, through: :recycles
   has_many :has_facilities
   has_many :facilities, through: :has_facilities
+  has_many :city_contacts
+
+  accepts_nested_attributes_for :recycles
+  accepts_nested_attributes_for :facilities
+  accepts_nested_attributes_for :city_contacts
+
+  # Define uploader
+  mount_uploader :image_link, MediaUploader
+  mount_uploaders :files, MediaUploader
 
   # Search prereq
   include Elasticsearch::Model

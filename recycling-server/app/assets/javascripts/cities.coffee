@@ -33,28 +33,78 @@ $(document).ready ->
     .chosen({ width: "100%" })
 
   numFacilities = 1
+  numContacts = 0
 
-  $("#add-facility").click(() ->
+  $("#add-facility").click ->
+    genIdAndNameForField = (fieldName) ->
+      id: "city_facilities_attributes_#{numFacilities}_#{fieldName}"
+      name: "city[facilities_attributes][#{numFacilities}][#{fieldName}]"
+
+    { id: nameId, name: nameName } = genIdAndNameForField("name")
+    { id: addressId, name: addressName } = genIdAndNameForField("street_address")
+    { id: websiteId, name: websiteName } = genIdAndNameForField("website")
+
     $("#facility-#{numFacilities}").html("""
       <td>#{numFacilities+1}</td>
       <td>
-          <input  name='facility-name-#{numFacilities}' type='text' placeholder='Name'  class='form-control input-md'>
+          <input type="text"
+                 id='#{nameId}' name='#{nameName}'
+                 placeholder='Name'  class='form-control input-md'>
       </td>
       <td>
-          <input  name='facility-location#-#{numFacilities}' type='text' placeholder='Location' \
-          class='form-control input-md'>
+          <input type="text"
+                 id='#{addressId}' name='#{addressName}'
+                 placeholder='Address'  class='form-control input-md'>
+      </td>
+      <td>
+          <input type="text"
+                 id='#{websiteId}' name='#{websiteName}'
+                 placeholder='Website'  class='form-control input-md'>
       </td>
       """)
 
     ++numFacilities
     $('#facilities-table').append("<tr id='facility-#{numFacilities}'></tr>")
-  )
 
-  $("#delete-facility").click(() ->
+  $("#delete-facility").click ->
     if numFacilities > 1
       --numFacilities
       $("#facility-#{numFacilities}").html('')
-  )
+
+  $("#add-contact").click ->
+    genIdAndNameForField = (fieldName) ->
+      id: "city_city_contacts_attributes_#{numContacts}_#{fieldName}"
+      name: "city[city_contacts_attributes][#{numContacts}][#{fieldName}]"
+
+    { id: nameId, name: nameName } = genIdAndNameForField("name")
+    { id: contactId, name: contactName } = genIdAndNameForField("contact")
+
+    $("#contact-#{numContacts}").html("""
+      <td>#{numContacts+1}</td>
+      <td>
+          <input type="text"
+                 id='#{nameId}' name='#{nameName}'
+                 placeholder='Name'  class='form-control input-md'>
+      </td>
+      <td>
+          <input type="text"
+                 id='#{contactId}' name='#{contactName}'
+                 placeholder='Email or phone'  class='form-control input-md'>
+      </td>
+      """)
+
+    ++numContacts
+    $('#contacts-table').append("<tr id='contact-#{numContacts}'></tr>")
+
+  $("#delete-contact").click ->
+    if numContacts > 0
+      --numContacts
+      $("#contact-#{numContacts}").html('')
+
+  $("#city-file-upload-files").on 'change', ->
+    $("#city-upload-files-info").val(@files[0].name);
+  $("#city-file-upload-image").on 'change', ->
+    $("#city-upload-image-info").val("#{@files.length} files uploaded");
 
   # googleMap API
   initMap = ->
@@ -112,12 +162,12 @@ $(document).ready ->
     return
   return
 
-  # dropzone
-  Dropzone.autoDiscover = false
-
-  dropzone = new Dropzone(".dropzone", {
-    url: "/cities",
-    maxFilesize: 256,
-    paramName: "city[image_link]",
-    addRemoveLinks: false
-  })
+#  # dropzone
+#  Dropzone.autoDiscover = false
+#
+#  dropzone = new Dropzone(".dropzone", {
+#    url: "/cities",
+#    maxFilesize: 256,
+#    paramName: "city[image_link]",
+#    addRemoveLinks: false
+#  })

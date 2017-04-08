@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326223042) do
+ActiveRecord::Schema.define(version: 20170407093205) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",                        null: false
@@ -30,7 +30,17 @@ ActiveRecord::Schema.define(version: 20170326223042) do
     t.string   "image_link"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "uid",                       null: false
+    t.string   "website"
+    t.json     "files"
     t.index ["name"], name: "index_cities_on_name", unique: true, using: :btree
+  end
+
+  create_table "city_contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "city_id"
+    t.string  "name",    null: false
+    t.string  "contact", null: false
+    t.index ["city_id"], name: "index_city_contacts_on_city_id", using: :btree
   end
 
   create_table "facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -90,5 +100,6 @@ ActiveRecord::Schema.define(version: 20170326223042) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "city_contacts", "cities"
   add_foreign_key "subcategories", "categories"
 end

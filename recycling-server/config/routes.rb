@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  resources :media_contents, only: [:create]
+
   root 'welcome#index'
 
   # API V1

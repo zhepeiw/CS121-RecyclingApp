@@ -8,46 +8,70 @@
     </div>
 
     <div class="city-form-container form-horizontal">
-      <%= form_for @city, url: { action: 'create' } do |f| %>
+      <%= form_for(@city) do |f| %>
+      <% # form_for(@city, options = { :html => { :class => 'dropzone' } }) do |f| %>
+          <%= f.hidden_field(:uid, :value => current_user.id) %>
+
           <div class="form-group">
-            <%= label_tag :city_name, 'Name: ', class: 'col-sm-2 control-label item' %>
+            <%= f.label(:name, 'Name: ', class: 'col-sm-2 control-label item') %>
             <div class="col-sm-10">
-              <%= f.text_field :name, class: 'form-control', name: :city_name, placeholder: 'Name of the city' %>
+              <%= f.text_field(:name, { :class => 'form-control', :placeholder => 'Name of the city' }) %>
             </div>
           </div>
 
           <div class="form-group">
-            <%= label_tag :city_description, 'Description: ', class: 'col-sm-2 control-label item' %>
-            <div class="col-sm-10">
-              <%= f.text_area :description, rows: 5, class: 'form-control',
-                              name: :city_description, placeholder: 'A short description of the city' %>
+            <%= f.label(:state, 'State: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-10 col-sm-4 col-md-4">
+              <%= f.text_field(:state, { :class => 'form-control', :placeholder => 'State of the city' }) %>
+            </div>
+
+            <%= f.label(:zipcode, 'Zipcode: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-10 col-sm-4 col-md-4">
+              <%= f.text_field(:zipcode, { :class => 'form-control', :placeholder => 'Zipcode of the city' }) %>
             </div>
           </div>
 
           <div class="form-group">
-            <%= label_tag :categories, 'Categories: ', class: 'col-sm-2 control-label item' %>
+            <%= f.label(:website, 'Website: ', class: 'col-sm-2 control-label item') %>
             <div class="col-sm-10">
-              <%= select_tag('category', options_from_collection_for_select(Category.all, :id, :name),
-                             { multiple: '',
-                               'data-placeholder': 'Choose categories...',
-                               include_blank: true,
-                               class: 'chosen-select-category' })
+              <%= f.text_field(:website, { :class => 'form-control', :placeholder => 'Website url for the city recycling info page' }) %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag(:description, 'Description: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-sm-10">
+              <%= f.text_area(:description,
+                              { :rows => 5, :class => 'form-control', :placeholder => 'A short description of the city' }) %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag(:categories, 'Categories: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-sm-10">
+              <%= select_tag('category', options_from_collection_for_select(@categories, :id, :name),
+                             { :multiple => true,
+                               :'data-placeholder' => 'Choose categories...',
+                               :include_blank => true,
+                               :class => 'chosen-select-category' })
               %>
             </div>
           </div>
 
           <% @categories.each do |category| %>
               <div class="form-group subcategory-selector" id="subcategory-selector-<%= category.id %>">
-                <%= label_tag :subcategories, "Subcategories for #{category.name}:", class: 'col-sm-2 control-label item' %>
-                <div class="col-sm-10">
-                  <%= select_tag('category',
-                                 options_from_collection_for_select(category.subcategories, :id, :name),
-                                 { multiple: '',
-                                   'data-placeholder': "Choose subcategories for #{category.name.downcase}...",
-                                   include_blank: true,
-                                   class: 'chosen-select-subcategory' })
-                  %>
-                </div>
+                <%= f.fields_for :recycle do |recycle_form| %>
+                  <%= label_tag(category.id, "Subcategories for #{category.name}:", class: 'col-sm-2 control-label item') %>
+                  <div class="col-sm-10">
+                    <%= recycle_form.collection_select(category.id, category.subcategories, :id, :name, options = {}, html_options = {
+                      :multiple => true,
+                      :'data-placeholder' => "Choose subcategories for #{category.name.downcase}...",
+                      :include_blank => true,
+                      :class => 'chosen-select-subcategory',
+                    })
+                    %>
+                  </div>
+                <% end %>
               </div>
           <% end %>
 
@@ -61,15 +85,19 @@
                     <tr>
                       <th class="text-center">#</th>
                       <th class="text-center">Name</th>
-                      <th class="text-center">Location</th>
+                      <th class="text-center">Address</th>
+                      <th class="text-center">Website</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <%= f.fields_for :facilities do |facility_form| %>
                     <tr id='facility-0'>
                       <td>1</td>
-                      <td><input type="text" name='facility-name-0'  placeholder='Name' class="form-control"/></td>
-                      <td><input type="text" name='facility-location-0' placeholder='Location' class="form-control"/></td>
+                      <td><%= facility_form.text_field :name, { :placeholder => 'Name', :class => 'form-control' } %></td>
+                      <td><%= facility_form.text_field :street_address, { :placeholder => 'Address', :class => 'form-control' } %></td>
+                      <td><%= facility_form.text_field :website, { :placeholder => 'Website', :class => 'form-control' } %></td>
                     </tr>
+                    <% end %>
                     <tr id='facility-1'></tr>
                     </tbody>
                   </table>
@@ -79,22 +107,59 @@
               </div>
             </div>
           </div>
-      <% end %>
 
-      <div class="form-group">
-        <%= label_tag :image_link, 'Background image: ', class: 'col-sm-2 control-label item' %>
-        <%= form_tag '/cities', method: :post, class: 'col-10 col-sm-10 dropzone city-background-uploader', id: 'background-dropzone' do %>
-            <div class="fallback">
-              <%= file_field_tag 'image', multipart: true %>
+          <div class="form-group">
+            <%= label_tag :city_contacts, 'Additional Contacts: ', class: 'col-sm-2 control-label item' %>
+            <div class="col-sm-10">
+              <div class="row clearfix">
+                <div class="col-md-12 column">
+                  <table class="table table-bordered" id="contacts-table">
+                    <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th class="text-center">Name</th>
+                      <th class="text-center">Email/Phone</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id='contact-0'></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button type="button" id='delete-contact' class="pull-right btn btn-default">Delete Contact</button>
+                <button type="button" id="add-contact" class="pull-right btn btn-default">Add Contact</button>
+              </div>
             </div>
-        <% end %>
-      </div>
+          </div>
 
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button class="btn btn-primary item">Create</button>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= label_tag :image_link, 'Background image: ', class: 'col-sm-2 control-label item' %>
+            <div class="col-sm-10">
+              <div class="city-file-upload btn btn-default">
+                <span>Choose an image...</span>
+                <%= f.file_field :image_link, multipart: true, id: 'city-file-upload-files'  %>
+              </div>
+              <input id="city-upload-files-info" placeholder="Nothing uploaded" disabled="disabled" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag(:files, 'Additional Files: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-sm-10">
+              <div class="city-file-upload btn btn-default">
+                <span>Choose one or more files...</span>
+                <%= f.file_field :files, multipart: true, multiple: true, id: 'city-file-upload-image' %>
+              </div>
+              <input id="city-upload-image-info" placeholder="Nothing uploaded" disabled="disabled" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <%= f.submit 'Create', class: 'btn btn-primary item' %>
+            </div>
+          </div>
+      <% end %>
     </div>
 
   </div>
