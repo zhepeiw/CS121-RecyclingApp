@@ -7,13 +7,14 @@ a.devise-link {
     margin: 20px;
 }
 
-.panel-body {
+.devise-panel-body {
 	margin-left: 0px;
 	margin-right: 0px;
+	padding: 20px;
 }
 
 @media (min-width: 768px) {
-    .panel-body {
+    .devise-panel-body {
 		margin-left: 20%;
 		margin-right: 20%;
 	}
