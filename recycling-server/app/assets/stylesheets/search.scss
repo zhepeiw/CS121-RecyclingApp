@@ -16,10 +16,24 @@ a.black-link {
 }
 
 .results-container {
+	width: 60%;
 	padding-left: 30px;
 	padding-right: 30px;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	margin-left: 20%;
+	margin-right: 20%;
 }
 
 .no-results {
 	padding-top: 10px;
+}
+
+.panel-body {
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+
+.page-top-padding {
+	padding-top: 50px;
 }

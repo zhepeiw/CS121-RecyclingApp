@@ -14,7 +14,8 @@ categoryList = [
 	["Plastic", "", "plastic.jpg", 1],
 	["Metal", "", "metal.jpg", 1],
 	["Oil", "", "oil.jpg", 5],
-	["Electronics", "", "electronics.jpg", 4]
+	["Electronics", "", "electronics.jpg", 4],
+	["Green", "", "greenwaste.jpg", 3]
 ]
 
 categoryList.each do |name, description, image_link, recycle_class|
@@ -74,7 +75,8 @@ subcategoryList = [
 	["Sauce cans", "", "", 5],
 	["Assorted food cans", "", "", 5],
 	["Metal Hangers", "", "", 5],
-	["Motor oil", "", "", 6]
+	["Motor oil", "", "", 6],
+	["Aluminum foil", "", "", 5]
 ]
 
 subcategoryList.each do |name, description, image_link, category_id|
@@ -92,7 +94,8 @@ end
 
 # recycle seed
 recycleList = [
-	[1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8], [1, 9], [1, 10], [1, 11], [1, 12], [1, 13], [1, 14], [1, 15], [1, 16], [1, 17], [1, 18], [1, 19], [1, 20], [1, 21], [1, 22], [1, 23], [1, 24], [1, 25], [1, 26], [1, 27], [1, 28], [1, 29], [1, 30], [1, 31], [1, 32], [1, 33], [1, 34], [1, 35], [1, 36], [1, 37], [1, 38], [1, 39], [1, 40], [1, 41], [1, 42], [1, 43], [1, 44], [1, 45], [1, 46], [1, 47], [1, 48], [1, 49], [1, 50], [1, 51], [1, 52] 
+	[1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8], [1, 9], [1, 10], [1, 11], [1, 12], [1, 13], [1, 14], [1, 15], [1, 16], [1, 17], [1, 18], [1, 19], [1, 20], [1, 21], [1, 22], [1, 23], [1, 24], [1, 25], [1, 26], [1, 27], [1, 28], [1, 29], [1, 30], [1, 31], [1, 32], [1, 33], [1, 34], [1, 35], [1, 36], [1, 37], [1, 38], [1, 39], [1, 40], [1, 41], [1, 42], [1, 43], [1, 44], [1, 45], [1, 46], [1, 47], [1, 48], [1, 49], [1, 50], [1, 51], [1, 52],
+	[2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 53] 
 ]
 
 recycleList.each do |city_id, subcategory_id|
@@ -104,7 +107,8 @@ facilitiesList = [
 	["Residential Recycling Center", "City Yard - 1616 Monte Vista Avenue, Claremont", "91711", "909-399-5431", nil], # paper, cardboard, glass, plastic, metal, and aluminum
 	["Connie and Dick's Automotive", "150 Olive Street, Claremont", "91711", "909-626-5653", "www.connieanddicks.com"], # oil
 	["GreenWay Solid Waste & Recycling Inc", "10660 Silicon Avenue #H, Montclair", "91763", "909-518-7943", "www.greenwayrecyclinginc.com"], # Electronic
-	["Clean LA", "900 S, Fremont Ave, Alhambra", "91803", "888-253-2652", "www.888cleanla.com"] # other hazardous
+	["Clean LA", "900 S, Fremont Ave, Alhambra", "91803", "888-253-2652", "www.888cleanla.com"], # other hazardous
+	["Burrtec", " 909-822-2397, Barstow", "92311", "909-822-2397", "http://www.burrtec.com/residential"]
 ]
 
 facilitiesList.each do |name, street_address, zipcode, phone_number, website, city_id|
@@ -113,7 +117,8 @@ end
 
 # has_facilities seed
 hasFacilityLst = [
-	[1, 1], [1, 2], [1, 3], [1, 4]
+	[1, 1], [1, 2], [1, 3], [1, 4],
+	[2, 5]
 ]
 
 hasFacilityLst.each do |city_id, facility_id|
