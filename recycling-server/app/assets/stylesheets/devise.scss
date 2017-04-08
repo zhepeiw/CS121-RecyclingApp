@@ -6,3 +6,15 @@ a.devise-link {
     color: black;
     margin: 20px;
 }
+
+.panel-body {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+@media (min-width: 768px) {
+    .panel-body {
+		margin-left: 20%;
+		margin-right: 20%;
+	}
+}
