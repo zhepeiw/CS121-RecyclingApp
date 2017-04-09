@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.user-info-container {
+  overflow: auto;
+  padding: 100px 0 0 0;
+}
+
 .user-city-container {
-  min-height: 250px;
+  overflow: auto;
 }

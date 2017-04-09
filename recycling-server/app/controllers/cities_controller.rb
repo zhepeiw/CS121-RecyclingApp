@@ -16,6 +16,10 @@ class CitiesController < ApplicationController
   end
 
   def new
+    if current_user.city != nil
+      redirect_to "/cities/#{current_user.city}"
+    end
+
     @city = City.new
     @city.facilities.build
     @city.city_contacts.build
@@ -27,6 +31,9 @@ class CitiesController < ApplicationController
     @city = City.new(permit_city)
 
     if @city.save
+      # Update user city
+      current_user.update(city: @city.id)
+
       # Construct subcategories and save them to recycles
       Category.all.each do |category|
         params[:city][:recycle]["#{category.id}"].each do |subcategory_id|
