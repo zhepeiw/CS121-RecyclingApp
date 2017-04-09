@@ -15,7 +15,11 @@
               <div class="panel-body">
                 <div class="media">
                   <div class="media-left media-middle">
-                    <%= image_tag city.image_link.url, class: "media-object result-image" %>
+                    <% if city.image_link.url != nil %>
+                      <%= image_tag city.image_link.url, class: "media-object result-image" %>
+                    <% else %>
+                      <div style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) )" class="media-object result-image"></div>
+                    <% end %>
                   </div>
                   <div class="media-body">
                     <h5><b><%= city.name %></b></h5>
