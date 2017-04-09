@@ -5,6 +5,7 @@
     <div class="header-content-inner">
       <h1 id="homeHeading"><%= @city.name %></h1>
       <hr>
+      <h4 id="homeDescription"><%= @city.description %></h4>
     </div>
   </div>
 </header>
@@ -73,6 +74,33 @@
     </div>
   </div>
   <div id="map"></div>
+</section>
+
+<section class="additional-files">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Additional Files</h2>
+        <hr class="primary">
+      </div>
+    </div>
+  </div>
+  <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Filename</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <% City.find_subcategories_by_id(@city.id, category.id).each_with_index do |subcategory, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= subcategory.name %></td>
+            <td><%= subcategory.description %></td>
+          </tr>
+      <% end %>
+    </table>
 </section>
 
 <%= render partial: "layouts/footer" %>

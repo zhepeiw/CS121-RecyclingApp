@@ -91,6 +91,7 @@ run
 
 ```
 $ docker exec -it recycling-server /bin/bash
+$ winpty docker exec -it recycling-server bash (for windows)
 ```
 
 If you want to look at the logs
@@ -99,7 +100,6 @@ run
 
 ```
 $ docker logs -f recycling-server
-$ winpty docker exec -it recycling-server bash (for windows)
 ```
 
 Note: all `docker` commands could

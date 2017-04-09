@@ -1,4 +1,5 @@
 require 'elasticsearch/model'
+require 'json'
 
 class CitiesController < ApplicationController
   before_action :authenticate_user!, only: [:new]
@@ -11,6 +12,7 @@ class CitiesController < ApplicationController
     @city = City.find_by_id(params[:id])
     @categories = Category.all
     @facilities = City.find_facilities_by_city(1)
+    @filesJSON = @city.files
   end
 
   def new
