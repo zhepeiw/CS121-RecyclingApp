@@ -1,5 +1,16 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  CarrierWave.configure do |config|
+    config.fog_provider = 'fog/aws'
+    config.fog_credentials = {
+        provider:              'AWS',
+        aws_access_key_id:     '<AWS_ACCESS_KEY_ID>',
+        aws_secret_access_key: '<AWS_SECRET_ACCESS_KEY>',
+        region:                'us-east-1',
+        host:                  'https://s3.amazonaws.com',
+    }
+    config.fog_directory  = 'cs121-recycling-server-files'
+  end
 
   # Code is not reloaded between requests.
   config.cache_classes = true

@@ -37,6 +37,7 @@ gem 'chosen-rails'
 
 # File upload
 gem 'carrierwave'
+gem 'fog-aws'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
