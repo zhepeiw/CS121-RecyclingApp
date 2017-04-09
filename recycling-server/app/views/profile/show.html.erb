@@ -1,0 +1,66 @@
+<%= render partial: "layouts/nav", locals: {items: ["Contact"], shouldShow: true, shouldShowDevelopers: false, useFixedNav: true} %>
+
+<section class="user-info-container">
+  <div class="col-10 col-sm-10 col-md-6 col-offset-1 col-sm-offset-1 col-md-offset-3">
+    <div class="text-center">
+      <h2 class="section-heading"><%= current_user.name || current_user.email %></h2>
+      <hr class="primary">
+    </div>
+  </div>
+
+  <div class="col-10 col-sm-8 col-md-6 col-offset-1 col-sm-offset-2 col-md-offset-3">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10"><%= current_user.email %></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">State</label>
+        <div class="col-sm-10"><%= current_user.state %></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Job Title</label>
+        <div class="col-sm-10"><%= current_user.job_title %></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="user-city-container">
+  <div class="col-10 col-sm-10 col-md-6 col-offset-1 col-sm-offset-1 col-md-offset-3">
+    <div class="text-center">
+      <h2 class="section-heading">Managed City</h2>
+      <hr class="primary">
+    </div>
+  </div>
+
+  <div class="col-10 col-sm-8 col-md-6 col-offset-1 col-sm-offset-2 col-md-offset-3">
+    <% if not @city %>
+        <h4 class="no-results" style="text-align: center;">No data</h4>
+    <% else %>
+        <div class="result-list-item">
+          <a href="/cities/<%= @city.id %>" class="black-link">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <% if @city.image_link.url != nil %>
+                        <%= image_tag @city.image_link.url, class: "media-object result-image" %>
+                    <% else %>
+                        <div style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) )" class="media-object result-image"></div>
+                    <% end %>
+                  </div>
+                  <div class="media-body">
+                    <h5><b><%= @city.name %></b></h5>
+                    <%= @city.description %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+    <% end %>
+  </div>
+</section>
+
+<%= render partial: "layouts/footer" %>

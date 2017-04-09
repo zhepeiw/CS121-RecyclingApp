@@ -25,12 +25,14 @@
               <a class="page-scroll" href="/developers/index">Developers</a>
             </li>
           <% end %>
-          <% if user_signed_in? %>
-            <li>
-              <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "page-scroll") %>
-            </li>
-          <% end %>
         </ul>
+
+        <% if user_signed_in? %>
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 0">
+              <li><%= link_to(current_user.name || current_user.email, "/users/#{current_user.id}", :method => :get, :class => "page-scroll") %></li>
+              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "page-scroll") %></li>
+            </ul>
+        <% end %>
       </div>
     </div>
 

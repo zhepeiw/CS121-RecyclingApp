@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  get 'users/:id', action: :show, controller: 'profile'
 
   get 'developers/index'
   get 'search/index'
