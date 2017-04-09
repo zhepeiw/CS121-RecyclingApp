@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170408023148) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                        null: false
     t.text     "description",   limit: 65535
     t.string   "image_link"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170408023148) do
     t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
   end
 
-  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                      null: false
     t.string   "state",                     null: false
     t.string   "zipcode",                   null: false
@@ -36,14 +36,14 @@ ActiveRecord::Schema.define(version: 20170408023148) do
     t.index ["name"], name: "index_cities_on_name", unique: true, using: :btree
   end
 
-  create_table "city_contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "city_contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "city_id"
     t.string  "name",    null: false
     t.string  "contact", null: false
     t.index ["city_id"], name: "index_city_contacts_on_city_id", using: :btree
   end
 
-  create_table "facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",           null: false
     t.string   "street_address"
     t.string   "zipcode"
@@ -54,25 +54,25 @@ ActiveRecord::Schema.define(version: 20170408023148) do
     t.index ["street_address"], name: "index_facilities_on_street_address", unique: true, using: :btree
   end
 
-  create_table "facility_recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "facility_recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "facility_id", null: false
     t.integer "category_id", null: false
     t.index ["facility_id", "category_id"], name: "index_facility_recycles_on_facility_id_and_category_id", unique: true, using: :btree
   end
 
-  create_table "has_facilities", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "has_facilities", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "city_id",     null: false
     t.integer "facility_id", null: false
     t.index ["city_id", "facility_id"], name: "index_has_facilities_on_city_id_and_facility_id", unique: true, using: :btree
   end
 
-  create_table "recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "recycles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "city_id",        null: false
     t.integer "subcategory_id", null: false
     t.index ["city_id", "subcategory_id"], name: "index_recycles_on_city_id_and_subcategory_id", unique: true, using: :btree
   end
 
-  create_table "subcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "subcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                      null: false
     t.text     "description", limit: 65535
     t.string   "image_link"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20170408023148) do
     t.index ["name"], name: "index_subcategories_on_name", unique: true, using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"

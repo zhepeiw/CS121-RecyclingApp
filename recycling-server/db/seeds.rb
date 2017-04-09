@@ -89,7 +89,12 @@ cityList = [
 ]
 
 cityList.each do |name, state, zipcode, description, image_link, uid, website|
-	City.create(name: name, state: state, zipcode: zipcode, description: description, image_link: image_link, uid: uid, website: website)
+	city = City.create(name: name, state: state, zipcode: zipcode, description: description, image_link: image_link, uid: uid, website: website)
+
+  uploader = MediaUploader.new(city, 'image_link')
+	uploader.store!(File.open(File.join(Rails.root, "db/seed/cities/#{image_link}")))
+
+	city.update(image_link: uploader)
 end
 
 # recycle seed
