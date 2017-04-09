@@ -4,8 +4,15 @@
   <div class="header-content">
     <div class="header-content-inner">
       <h1 id="homeHeading"><%= @city.name %></h1>
+      <div id="homeSubHeading">
+        <span><%= @city.state %></span> | <span><%= @city.zipcode %></span>
+      </div>
       <hr>
-      <h4 id="homeDescription"><%= @city.description %></h4>
+      <div id="homeDescription"><%= @city.description %></div>
+      <h4>
+        <i class="fa fa-external-link" aria-hidden="true" style="margin-right: 5px"></i>
+        <a href="<%= @city.website %>">Goto Official Recycling Website</a>
+      </h4>
     </div>
   </div>
 </header>
@@ -76,6 +83,36 @@
   <div id="map"></div>
 </section>
 
+<% if @city.city_contacts.length > 0 %>
+<section class="city-files-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Additional Contacts</h2>
+        <hr class="primary">
+      </div>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email/Phone</th>
+    </tr>
+    </thead>
+    <% @city.city_contacts.each_with_index do |contact, index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= contact.name %></td>
+          <td><%= contact.contact %></td>
+        </tr>
+    <% end %>
+  </table>
+</section>
+<% end %>
+
+<% if @filesJSON.size > 0 %>
 <section class="city-files-container">
   <div class="container">
     <div class="row">
@@ -102,5 +139,6 @@
       <% end %>
     </table>
 </section>
+<% end %>
 
 <%= render partial: "layouts/footer" %>
