@@ -85,13 +85,13 @@ end
 
 # city seed 
 cityList = [
-	["Claremont", "California", "91711", "Claremont is a city on the eastern edge of Los Angeles County, California, United States, 30.3 miles (48.8 km) east of downtown Los Angeles. Claremont is home to the world famous Harvey Mudd College.", "https://cloud.githubusercontent.com/assets/16809166/24834748/fe905fbe-1ca2-11e7-88cb-e46623837aa3.jpg", "1", "http://www.ci.claremont.ca.us/government/departments-divisions/community-services/trash-and-recycling"]
+	["Claremont", "California", "91711", "Claremont is a city on the eastern edge of Los Angeles County, California, United States, 30.3 miles (48.8 km) east of downtown Los Angeles. Claremont is home to the world famous Harvey Mudd College.", "claremont.jpg", "1", "http://www.ci.claremont.ca.us/government/departments-divisions/community-services/trash-and-recycling"]
 ]
 
 cityList.each do |name, state, zipcode, description, image_link, uid, website|
 	city = City.create(name: name, state: state, zipcode: zipcode, description: description, image_link: image_link, uid: uid, website: website)
 
-  uploader = MediaUploader.new(city, 'image_link')
+  	uploader = MediaUploader.new(city, 'image_link')
 	uploader.store!(File.open(File.join(Rails.root, "db/seed/cities/#{image_link}")))
 
 	city.update(image_link: uploader)
