@@ -14,14 +14,6 @@
         <%= f.text_field :name, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-      </div>
-      <div class="form-group">
         <%= f.label :city %>
         <%= f.text_field :city, class: 'form-control' %>
       </div>
@@ -32,6 +24,14 @@
       <div class="form-group">
         <%= f.label :job_title %>
         <%= f.text_field :job_title, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
       <%= f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary' %>
     <% end %>
