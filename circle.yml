@@ -19,7 +19,7 @@ machine:
 dependencies:
   pre:
     - pip install awscli
-    - sed -e "s/<AWS_ACCESS_KEY_ID>/$AWS_ACCESS_KEY_ID/" -e "s/<AWS_SECRET_ACCESS_KEY>/$AWS_SECRET_ACCESS_KEY/" < recycling-server/config/environments/production.template.rb > recycling-server/config/environments/production.rb
+    - sed -e "s/<AWS_ACCESS_KEY_ID>/$AWS_ACCESS_KEY_ID/" -e "s/<AWS_SECRET_ACCESS_KEY>/$AWS_SECRET_ACCESS_KEY/" < recycling-server/config/initializers/carrierwave.rb.template > recycling-server/config/initializers/carrierwave.rb
   override:
     - cd recycling-server && bundle install && RAILS_ENV=production bin/rails assets:precompile
   post:
