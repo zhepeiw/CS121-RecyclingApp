@@ -5,11 +5,11 @@ CarrierWave.configure do |config|
       aws_access_key_id:     '<AWS_ACCESS_KEY_ID>',
       aws_secret_access_key: '<AWS_SECRET_ACCESS_KEY>',
       region:                'us-east-1',
-      host:                  'https://s3.amazonaws.com',
   }
 
   config.fog_directory  = 'cs121-recycling-server-assets'
   config.fog_public     = true
+  config.asset_host = "http://dl4e9b5w058f0.cloudfront.net"
 
   if Rails.env.test? || Rails.env.cucumber?
     config.storage = :file
