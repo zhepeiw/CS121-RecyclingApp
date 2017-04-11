@@ -16,7 +16,7 @@ class CitiesController < ApplicationController
   end
 
   def new
-    if current_user.city != nil
+    if current_user.city_id != nil
       redirect_to "/cities/#{current_user.city}"
     end
 
@@ -32,7 +32,7 @@ class CitiesController < ApplicationController
 
     if @city.save
       # Update user city
-      current_user.update(city: @city.id)
+      current_user.update(city_id: @city.id)
 
       # Construct subcategories and save them to recycles
       Category.all.each do |category|
