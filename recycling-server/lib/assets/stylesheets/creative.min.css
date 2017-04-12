@@ -56,7 +56,16 @@ p {
 .bg-primary {
     background-color: #338A2E
 }
-
+.bg-gray {
+    background-color: #3F3F3F;
+    color: #B1B1B1;
+    a {
+        color: #B1B1B1;
+        &:hover {
+            color: #338A2E;
+        }
+    }
+}
 .bg-dark {
     background-color: #222;
     color: #fff
