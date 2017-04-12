@@ -76,7 +76,8 @@ subcategoryList = [
 	["Assorted food cans", "", "", 5],
 	["Metal Hangers", "", "", 5],
 	["Motor oil", "", "", 6],
-	["Aluminum foil", "", "", 5]
+	["Aluminum foil", "", "", 5],
+	["Clean Paper", "", "", 1],
 ]
 
 subcategoryList.each do |name, description, image_link, category_id|
@@ -85,7 +86,9 @@ end
 
 # city seed 
 cityList = [
-	["Claremont", "California", "91711", "Claremont is a city on the eastern edge of Los Angeles County, California, United States, 30.3 miles (48.8 km) east of downtown Los Angeles. Claremont is home to the world famous Harvey Mudd College.", "claremont.jpg", "1", "http://www.ci.claremont.ca.us/government/departments-divisions/community-services/trash-and-recycling"]
+	["Claremont", "California", "91711", "Claremont is a city on the eastern edge of Los Angeles County, California, United States, 30.3 miles (48.8 km) east of downtown Los Angeles. Claremont is home to the world famous Harvey Mudd College.", "claremont.jpg", "1", "http://www.ci.claremont.ca.us/government/departments-divisions/community-services/trash-and-recycling"],
+	["Upload", "", "", "", "", "", ""],
+	["San Francisco", "California", "94105", "San Francisco, in northern California, is a hilly city on the tip of a peninsula surrounded by the Pacific Ocean and San Francisco Bay. It's known for its year-round fog, iconic Golden Gate Bridge, cable cars and colorful Victorian houses.", "san_francisco.jpg", "2", "https://sfenvironment.org/zero-waste/recycling-and-composting"]
 ]
 
 cityList.each do |name, state, zipcode, description, image_link, uid, website|
@@ -100,7 +103,8 @@ end
 # recycle seed
 recycleList = [
 	[1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8], [1, 9], [1, 10], [1, 11], [1, 12], [1, 13], [1, 14], [1, 15], [1, 16], [1, 17], [1, 18], [1, 19], [1, 20], [1, 21], [1, 22], [1, 23], [1, 24], [1, 25], [1, 26], [1, 27], [1, 28], [1, 29], [1, 30], [1, 31], [1, 32], [1, 33], [1, 34], [1, 35], [1, 36], [1, 37], [1, 38], [1, 39], [1, 40], [1, 41], [1, 42], [1, 43], [1, 44], [1, 45], [1, 46], [1, 47], [1, 48], [1, 49], [1, 50], [1, 51], [1, 52],
-	[2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 53] 
+	[2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 53],
+	[3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6], [3, 7], [3, 8], [3, 9], [3, 10], [3, 11], [3, 12], [3, 13], [3, 14], [3, 15], [3, 16], [3, 17], [3, 18], [3, 19], [3, 20], [3, 21], [3, 22], [3, 23], [3, 24], [3, 25], [3, 26], [3, 27], [3, 28], [3, 29], [3, 30], [3, 31], [3, 32], [3, 33], [3, 34], [3, 35], [3, 36], [3, 37], [3, 38], [3, 39], [3, 40], [3, 41], [3, 42], [3, 43], [3, 44], [3, 45], [3, 46], [3, 47], [3, 48], [3, 49], [3, 50], [3, 51], [3, 52], [3, 53], [3, 54]
 ]
 
 recycleList.each do |city_id, subcategory_id|
@@ -113,7 +117,8 @@ facilitiesList = [
 	["Connie and Dick's Automotive", "150 Olive Street, Claremont", "91711", "909-626-5653", "www.connieanddicks.com"], # oil
 	["GreenWay Solid Waste & Recycling Inc", "10660 Silicon Avenue #H, Montclair", "91763", "909-518-7943", "www.greenwayrecyclinginc.com"], # Electronic
 	["Clean LA", "900 S, Fremont Ave, Alhambra", "91803", "888-253-2652", "www.888cleanla.com"], # other hazardous
-	["Burrtec", " 909-822-2397, Barstow", "92311", "909-822-2397", "http://www.burrtec.com/residential"]
+	["Burrtec", "Barstow", "92311", "909-822-2397", "http://www.burrtec.com/residential"],
+	["San Francisco Department of the Environment (SF Environment)", "1455 Market St #1200, San Francisco, CA", "94103", "(415) 355-3700", "sfenvironment.org"]
 ]
 
 facilitiesList.each do |name, street_address, zipcode, phone_number, website, city_id|
@@ -123,7 +128,8 @@ end
 # has_facilities seed
 hasFacilityLst = [
 	[1, 1], [1, 2], [1, 3], [1, 4],
-	[2, 5]
+	[2, 5],
+	[3, 6]
 ]
 
 hasFacilityLst.each do |city_id, facility_id|
@@ -132,7 +138,7 @@ end
 
 # facility_recycle seed
 facilityRecycleList = [
-	[1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [2, 6], [3, 7]
+	[1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [2, 6], [3, 7], [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6], [6, 7], [6, 8]
 ]
 
 facilityRecycleList.each do |facility_id, category_id|
