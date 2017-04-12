@@ -110,4 +110,11 @@ a.black-link {
 .city-files-container {
   padding-left: 10%;
   padding-right: 10%;
+
+  a {
+    color: #757575;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

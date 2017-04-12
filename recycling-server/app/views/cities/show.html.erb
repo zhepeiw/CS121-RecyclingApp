@@ -133,7 +133,7 @@
           <tr>
             <th scope="row"><%= i+1 %></th>
             <td>
-              <a class="black-link" href="<%= @filesJSON[i].file.file %>"><%= @filesJSON[i].file.file.split('/')[-1] %></a>
+              <%= link_to @filesJSON[i].file.file.split('/')[-1], download_path(:file => @filesJSON[i].file.file) %>
             </td>
           </tr>
       <% end %>

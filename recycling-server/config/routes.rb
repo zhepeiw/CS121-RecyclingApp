@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'developers/index'
   get 'search/index'
   get 'welcome/index'
+  get 'download', to: 'welcome#download'
 
   resources :cities
 
