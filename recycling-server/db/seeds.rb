@@ -8,14 +8,14 @@
 
 # category seed
 categoryList = [
-	["Paper", "", "paper.jpg", 1],
-	["Cardboard", "", "cardboard.jpg", 1],
-	["Glass", "", "glass.jpg", 1],
-	["Plastic", "", "plastic.jpg", 1],
-	["Metal", "", "metal.jpg", 1],
-	["Oil", "", "oil.jpg", 5],
-	["Electronics", "", "electronics.jpg", 4],
-	["Green", "", "greenwaste.jpg", 3]
+	["Paper", "Paper is a thin material produced by pressing together moist fibres of cellulose pulp derived from wood, rags or grasses, and drying them into flexible sheets. It is a versatile material with many uses, including writing, printing, packaging, cleaning, and a number of industrial and construction processes.", "paper.jpg", 1],
+	["Cardboard", "Cardboard is a generic term for a heavy-duty paper of various strengths, ranging from a simple arrangement of a single thick sheet of paper to complex configurations featuring multiple corrugated and uncorrugated layers.", "cardboard.jpg", 1],
+	["Glass", "Glass is a non-crystalline amorphous solid that is often transparent and has widespread practical, technological, and decorative usage in, for example, window panes, tableware, and optoelectronics. The most familiar, and historically the oldest, types of glass are 'silicate glasses' based on the chemical compound silica (silicon dioxide, or quartz), the primary constituent of sand. The term glass, in popular usage, is often used to refer only to this type of material, which is familiar from use as window glass and in glass bottles. Of the many silica-based glasses that exist, ordinary glazing and container glass is formed from a specific type called soda-lime glass, composed of approximately 75 percent silicon dioxide (SiO2), sodium oxide (Na2O) from sodium carbonate (Na2CO3), calcium oxide, also called lime (CaO), and several minor additives.", "glass.jpg", 1],
+	["Plastic", "Plastic is a material consisting of any of a wide range of synthetic or semi-synthetic organic compounds that are malleable and can be molded into solid objects. Plastics are typically organic polymers of high molecular mass, but they often contain other substances. They are usually synthetic, most commonly derived from petrochemicals, but many are made from renewable materials such as polylactic acid from corn or cellulosics from cotton linters.[2] Plasticity is the general property of all materials that are able to irreversibly deform without breaking, but this occurs to such a degree with this class of moldable polymers that their name is an emphasis on this ability.", "plastic.jpg", 1],
+	["Metal", "A metal is a material (an element, compound, or alloy) that is typically hard, opaque, shiny, and has good electrical and thermal conductivity. Metals are generally malleable—that is, they can be hammered or pressed permanently out of shape without breaking or cracking—as well as fusible (able to be fused or melted) and ductile (able to be drawn out into a thin wire).[3] About 91 of the 118 elements in the periodic table are metals, the others are nonmetals or metalloids. Some elements appear in both metallic and non-metallic forms.", "metal.jpg", 1],
+	["Oil", "An oil is any neutral, nonpolar chemical substance that is a viscous liquid at ambient temperatures and is both hydrophobic and lipophilic. Oils have a high carbon and hydrogen content and are usually flammable and surface active.", "oil.jpg", 5],
+	["Electronics", "Electronics is the science of controlling electrical energy electrically, in which the electrons have a fundamental role. Electronics deals with electrical circuits that involve active electrical components such as vacuum tubes, transistors, diodes, integrated circuits, associated passive electrical components, and interconnection technologies. Commonly, electronic devices contain circuitry consisting primarily or exclusively of active semiconductors supplemented with passive elements; such a circuit is described as an electronic circuit.", "electronics.jpg", 4],
+	["Green", "Green waste is biodegradable waste that can be composed of garden or park waste, such as grass or flower cuttings and hedge trimmings, as well as domestic and commercial food waste. The differentiation green identifies it as high in nitrogen, as opposed to brown waste, which is primarily carbonaceous.", "greenwaste.jpg", 3]
 ]
 
 categoryList.each do |name, description, image_link, recycle_class|
