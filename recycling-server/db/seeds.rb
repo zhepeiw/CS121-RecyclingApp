@@ -87,14 +87,14 @@ end
 # city seed 
 cityList = [
 	["Claremont", "California", "91711", "Claremont is a city on the eastern edge of Los Angeles County, California, United States, 30.3 miles (48.8 km) east of downtown Los Angeles. Claremont is home to the world famous Harvey Mudd College.", "claremont.jpg", "1", "http://www.ci.claremont.ca.us/government/departments-divisions/community-services/trash-and-recycling"],
-	["Upload", "", "", "", "", "", ""],
-	["San Francisco", "California", "94105", "San Francisco, in northern California, is a hilly city on the tip of a peninsula surrounded by the Pacific Ocean and San Francisco Bay. It's known for its year-round fog, iconic Golden Gate Bridge, cable cars and colorful Victorian houses.", "san_francisco.jpg", "2", "https://sfenvironment.org/zero-waste/recycling-and-composting"]
+	["San Francisco", "California", "94105", "San Francisco, in northern California, is a hilly city on the tip of a peninsula surrounded by the Pacific Ocean and San Francisco Bay. It's known for its year-round fog, iconic Golden Gate Bridge, cable cars and colorful Victorian houses.", "san_francisco.jpg", "2", "https://sfenvironment.org/zero-waste/recycling-and-composting"],
+	["Upland", "California", "91786", "Upland is a city in San Bernardino County, California, in the United States. It was incorporated on May 15, 1906, after previously being named North Ontario. Upland is located at the foot of the highest part of the San Gabriel Mountains.", "upland.png", "3", "https://www.uplandpl.lib.ca.us/#Trash"]
 ]
 
 cityList.each do |name, state, zipcode, description, image_link, uid, website|
 	city = City.create(name: name, state: state, zipcode: zipcode, description: description, image_link: image_link, uid: uid, website: website)
 
-  	uploader = MediaUploader.new(city, 'image_link')
+  uploader = MediaUploader.new(city, 'image_link')
 	uploader.store!(File.open(File.join(Rails.root, "db/seed/cities/#{image_link}")))
 
 	city.update(image_link: uploader)
