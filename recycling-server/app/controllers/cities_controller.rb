@@ -2,7 +2,7 @@ require 'elasticsearch/model'
 require 'json'
 
 class CitiesController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
 
   def index
 
@@ -26,6 +26,12 @@ class CitiesController < ApplicationController
     @city.city_contacts.build
 
     @categories = Category.all
+  end
+
+  def edit
+    @city = City.find_by_id(params[:id])
+    @categories = Category.all
+    @category_ids = City.find_category_ids(params[:id])
   end
 
   def create

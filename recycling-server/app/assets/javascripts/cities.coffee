@@ -32,8 +32,8 @@ $(document).ready ->
   $(".chosen-select-subcategory")
     .chosen({ width: "100%" })
 
-  numFacilities = 1
-  numContacts = 0
+  numFacilities = parseInt($("#num-facilities").val() || 1)
+  numContacts = parseInt($("#num-contacts").val() || 0)
 
   $("#add-facility").click ->
     genIdAndNameForField = (fieldName) ->
