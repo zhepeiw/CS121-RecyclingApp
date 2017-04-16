@@ -118,3 +118,19 @@ a.black-link {
     }
   }
 }
+
+.city-contact-container {
+  padding-left: 10%;
+  padding-right: 10%;
+  table {
+    padding-left: 30%;
+    padding-right: 30%;
+  }
+
+  a {
+    color: #757575;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
