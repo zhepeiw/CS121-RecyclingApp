@@ -18,7 +18,7 @@ class CitiesController < ApplicationController
 
   def new
     if current_user.city_id != nil
-      redirect_to "/cities/#{current_user.city}"
+      redirect_to "/cities/#{current_user.city_id}"
     end
 
     @city = City.new
@@ -47,7 +47,7 @@ class CitiesController < ApplicationController
           if subcategory_id.present?
             @recycle = Recycle.new({ :city_id => @city.id,
                                      :subcategory_id => subcategory_id })
-            if !@recycle.save
+            unless @recycle.save
               flash[:error] = @city.errors.full_messages
               redirect_to new_city_path
             end
@@ -59,10 +59,22 @@ class CitiesController < ApplicationController
       redirect_to city_path(@city)
 
     else
-      puts @city.errors.full_messages
-      puts @city.errors.inspect
       flash[:error] = @city.errors.full_messages
       redirect_to new_city_path
+    end
+  end
+
+  def update
+    @city = City.find_by_id(params[:id])
+    # @facilities = @city.facilities
+
+    if @city.update(permit_city_update)
+      flash[:success] = "Success!"
+      redirect_to city_path(@city)
+    else
+      puts @city.errors.full_messages
+      flash[:error] = @city.errors.full_messages
+      redirect_to edit_city_path(@city)
     end
   end
 
@@ -77,7 +89,6 @@ class CitiesController < ApplicationController
                                  :description,
                                  :image_link,
                                  {
-                                   recycle: [],
                                    files: [],
                                    city_contacts_attributes: [
                                      :id,
@@ -90,6 +101,18 @@ class CitiesController < ApplicationController
                                      :street_address,
                                      :website
                                    ]
+                                 })
+  end
+
+  def permit_city_update
+    params.require(:city).permit(:name,
+                                 :state,
+                                 :zipcode,
+                                 :website,
+                                 :description,
+                                 :image_link,
+                                 {
+                                     files: [],
                                  })
   end
 end
