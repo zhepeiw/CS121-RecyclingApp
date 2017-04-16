@@ -57,6 +57,10 @@ class City < ApplicationRecord
     city = City.find_by_id(city_id)
     city.facilities.all
   end
+  def self.find_contributor_by_id(city_id)
+    city = City.find_by_id(city_id)
+    User.find_by_id(city.uid)
+  end
 end
 
 unless City.__elasticsearch__.index_exists?

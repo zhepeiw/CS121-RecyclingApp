@@ -13,6 +13,7 @@ class CitiesController < ApplicationController
     @categories = Category.all
     @facilities = City.find_facilities_by_city(1)
     @filesJSON = @city.files
+    @contributor = City.find_contributor_by_id(@city.id)
   end
 
   def new
