@@ -6,9 +6,11 @@
     <div class="header-content-inner">
       <h1 id="homeHeading"><%= @category.name %></h1>
       <hr>
+      <div id="homeDescription"><%= @category.description %></div>
     </div>
   </div>
 </header>
+
 <section class="category-container">
     <div id="category-<%= @category.name.downcase %>-details" class="category-details-active">
       <table class="table table-striped">
