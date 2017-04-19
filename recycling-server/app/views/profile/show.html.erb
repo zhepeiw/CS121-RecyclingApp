@@ -41,6 +41,7 @@
   <div class="col-10 col-sm-8 col-md-6 col-offset-1 col-sm-offset-2 col-md-offset-3">
     <% if not @city %>
         <h4 class="no-results" style="text-align: center;">No data</h4>
+        <h4 style="text-align: center;"> Click <a href="/cities/new">here</a> to create a new city page</h4>
     <% else %>
         <div class="result-list-item">
           <a href="/cities/<%= @city.id %>" class="black-link">

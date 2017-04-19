@@ -9,4 +9,11 @@
 
 .user-city-container {
   overflow: auto;
+  a {
+    color: #338A2E;
+    &:hover {
+      color: #034500;
+      cursor: pointer;
+    }
+  }
 }

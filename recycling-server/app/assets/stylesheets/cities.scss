@@ -107,9 +107,17 @@ a.black-link {
   text-decoration: none !important;
 }
 
-.city-files-container {
+.city-profile-container {
   padding-left: 10%;
   padding-right: 10%;
+  margin-bottom: 5%;
+}
+
+.city-files-container {
+  margin-top: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-bottom: 5%;
 
   a {
     color: #757575;
@@ -122,6 +130,8 @@ a.black-link {
 .city-contact-container {
   padding-left: 10%;
   padding-right: 10%;
+  margin-bottom: 5%;
+
   table {
     padding-left: 30%;
     padding-right: 30%;
