@@ -27,13 +27,19 @@ $(document).ready ->
       if selectedCategories.length > 0
         selectedCategories.forEach((categoryId) ->
           $("#subcategory-selector-#{categoryId}").addClass('active'))
+
+      $('.subcategory-selector').each((index, e) ->
+        if not $(e).hasClass('active')
+          $(e).find('option').removeAttr("selected");
+      )
+      $(".chosen-select-subcategory").trigger('chosen:updated')
     )
 
   $(".chosen-select-subcategory")
     .chosen({ width: "100%" })
 
-  numFacilities = 1
-  numContacts = 0
+  numFacilities = parseInt($("#num-facilities").val() || 1)
+  numContacts = parseInt($("#num-contacts").val() || 0)
 
   $("#add-facility").click ->
     genIdAndNameForField = (fieldName) ->

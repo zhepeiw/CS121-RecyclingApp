@@ -1,0 +1,214 @@
+<%= render partial: "layouts/nav", locals: {items: ["Contact"], shouldShow: true, shouldShowDevelopers: false, useFixedNav: true} %>
+
+<section class="city-new-container">
+  <div class="col-10 col-sm-10 col-md-6 col-offset-1 col-sm-offset-1 col-md-offset-3">
+    <div class="text-center">
+      <h2 class="section-heading">Edit info for <%= @city.name %></h2>
+      <hr class="primary">
+    </div>
+
+    <div class="city-form-container form-horizontal">
+      <%= form_for(@city) do |f| %>
+          <input name="_method" type="hidden" value="patch" />
+
+          <div class="form-group">
+            <%= f.label(:name, 'Name: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-sm-10">
+              <%= f.text_field(:name, { :class => 'form-control', :placeholder => 'Name of the city', :value => @city.name }) %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label(:state, 'State: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-10 col-sm-4 col-md-4">
+              <%= f.text_field(:state, { :class => 'form-control', :placeholder => 'State of the city', :value => @city.state }) %>
+            </div>
+
+            <%= f.label(:zipcode, 'Zipcode: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-10 col-sm-4 col-md-4">
+              <%= f.text_field(:zipcode, { :class => 'form-control', :placeholder => 'Zipcode of the city', :value => @city.zipcode }) %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label(:website, 'Website: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-sm-10">
+              <%= f.text_field(:website, { :class => 'form-control', :placeholder => 'Website url for the city recycling info page', :value => @city.website }) %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag(:description, 'Description: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-sm-10">
+              <%= f.text_area(:description,
+                              { :rows => 5, :class => 'form-control', :placeholder => 'A short description of the city', :value => @city.description }) %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag(:categories, 'Categories: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-sm-10">
+              <%= select_tag('category', options_for_select(@categories.map { |category| [category.name, category.id] }, @category_ids),
+                             { :multiple => true,
+                               :'data-placeholder' => 'Choose categories...',
+                               :include_blank => true,
+                               :class => "chosen-select-category" })
+              %>
+            </div>
+          </div>
+
+          <% @categories.each do |category| %>
+              <div class="form-group subcategory-selector <%= (@category_ids.include?(category.id)) ? 'active' : '' %>" id="subcategory-selector-<%= category.id %>">
+                <%= f.fields_for :recycle do |recycle_form| %>
+                    <%= label_tag(category.id, "Subcategories for #{category.name}:", class: 'col-sm-2 control-label item') %>
+                    <div class="col-sm-10">
+                      <%= recycle_form.collection_select(category.id, category.subcategories, :id, :name,
+                                                         options = { :selected => @city.subcategories.where(category_id: category.id).map { |s| s.id } },
+                                                         html_options = {
+                                                            :multiple => true,
+                                                            :'data-placeholder' => "Choose subcategories for #{category.name.downcase}...",
+                                                            :include_blank => true,
+                                                            :class => 'chosen-select-subcategory',
+                                                         })
+                      %>
+                    </div>
+                <% end %>
+              </div>
+          <% end %>
+
+          <div class="form-group">
+            <%= label_tag :facilities, 'Facilities: ', class: 'col-sm-2 control-label item' %>
+            <div class="col-sm-10">
+              <div class="row clearfix">
+                <div class="col-md-12 column">
+                  <input type="hidden" id="num-facilities" value="<%= @city.facilities.length %>" />
+                  <table class="table table-bordered" id="facilities-table">
+                    <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th class="text-center">Name</th>
+                      <th class="text-center">Address</th>
+                      <th class="text-center">Website</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @city.facilities.each_with_index do |facility, index| %>
+                        <input type="hidden"
+                               id='city_facilities_attributes_<%= index %>_id'
+                               name='city[facilities_attributes][<%= index %>][id]'
+                               value="<%= facility.id %>">
+                        <tr id='facility-<%= index %>'>
+                          <td><%= index + 1 %></td>
+                          <td>
+                            <input type="text"
+                                   id='city_facilities_attributes_<%= index %>_name'
+                                   name='city[facilities_attributes][<%= index %>][name]'
+                                   placeholder='Name' value="<%= facility.name %>" class='form-control input-md'>
+                          </td>
+                          <td>
+                            <input type="text"
+                                   id='city_facilities_attributes_<%= index %>_street_address'
+                                   name='city[facilities_attributes][<%= index %>][street_address]'
+                                   placeholder='Address' value="<%= facility.street_address %>" class='form-control input-md'>
+                          </td>
+                          <td>
+                            <input type="text"
+                                   id='city_facilities_attributes_<%= index %>_website'
+                                   name='city[facilities_attributes][<%= index %>][website]'
+                                   placeholder='Website' value="<%= facility.website %>" class='form-control input-md'>
+                          </td>
+                        </tr>
+                    <% end %>
+                    <tr id='facility-<%= @city.facilities.length %>'></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button type="button" id='delete-facility' class="pull-right btn btn-default">Delete Facility</button>
+                <button type="button" id="add-facility" class="pull-right btn btn-default">Add Facility</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag :city_contacts, 'Additional Contacts: ', class: 'col-sm-2 control-label item' %>
+            <div class="col-sm-10">
+              <div class="row clearfix">
+                <div class="col-md-12 column">
+                  <input type="hidden" id="num-contacts" value="<%= @city.city_contacts.length %>" />
+                  <table class="table table-bordered" id="contacts-table">
+                    <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th class="text-center">Name</th>
+                      <th class="text-center">Email/Phone</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @city.city_contacts.each_with_index do |contact, index| %>
+                    <input type="hidden"
+                           id='city_city_contacts_attributes_<%= index %>_id'
+                           name='city[city_contacts_attributes][<%= index %>][id]'
+                           value="<%= contact.id %>">
+                    <tr id='contact-<%= index %>'>
+                      <td><%= index + 1 %></td>
+                      <td>
+                        <input type="text"
+                               id='city_city_contacts_attributes_<%= index %>_name'
+                               name='city[city_contacts_attributes][<%= index %>][name]'
+                               placeholder='Address' value="<%= contact.name %>" class='form-control input-md'>
+                      </td>
+                      <td>
+                        <input type="text"
+                               id='city_city_contacts_attributes_<%= index %>_contact'
+                               name='city[city_contacts_attributes][<%= index %>][contact]'
+                               placeholder='Address' value="<%= contact.contact %>" class='form-control input-md'>
+                      </td>
+                    </tr>
+                    <% end %>
+                    <tr id='contact-<%= @city.city_contacts.length %>'></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button type="button" id='delete-contact' class="pull-right btn btn-default">Delete Contact</button>
+                <button type="button" id="add-contact" class="pull-right btn btn-default">Add Contact</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag :image_link, 'Background image: ', class: 'col-sm-2 control-label item' %>
+            <div class="col-sm-10">
+              <div class="city-file-upload btn btn-default">
+                <span>Choose an image...</span>
+                <%= f.file_field :image_link, multipart: true, id: 'city-file-upload-files'  %>
+              </div>
+              <input id="city-upload-files-info" placeholder="Nothing uploaded" disabled="disabled" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag(:files, 'Additional Files: ', class: 'col-sm-2 control-label item') %>
+            <div class="col-sm-10">
+              <div class="city-file-upload btn btn-default">
+                <span>Choose one or more files...</span>
+                <%= f.file_field :files, multipart: true, multiple: true, id: 'city-file-upload-image' %>
+              </div>
+              <input id="city-upload-image-info" placeholder="Nothing uploaded" disabled="disabled" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <%= f.submit 'Update', class: 'btn btn-primary' %>
+              <button class="btn btn-default">
+                <%= link_to('Cancel', "/cities/#{params[:id]}", :method => :get, :class => 'no-style') %>
+              </button>
+            </div>
+          </div>
+      <% end %>
+    </div>
+
+  </div>
+</section>
+
+<%= render partial: "layouts/footer" %>

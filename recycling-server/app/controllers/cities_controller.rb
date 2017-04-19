@@ -2,7 +2,7 @@ require 'elasticsearch/model'
 require 'json'
 
 class CitiesController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
 
   def index
 
@@ -18,7 +18,7 @@ class CitiesController < ApplicationController
 
   def new
     if current_user.city_id != nil
-      redirect_to "/cities/#{current_user.city}"
+      redirect_to "/cities/#{current_user.city_id}"
     end
 
     @city = City.new
@@ -26,6 +26,12 @@ class CitiesController < ApplicationController
     @city.city_contacts.build
 
     @categories = Category.all
+  end
+
+  def edit
+    @city = City.find_by_id(params[:id])
+    @categories = Category.all
+    @category_ids = City.find_category_ids(params[:id])
   end
 
   def create
@@ -41,7 +47,7 @@ class CitiesController < ApplicationController
           if subcategory_id.present?
             @recycle = Recycle.new({ :city_id => @city.id,
                                      :subcategory_id => subcategory_id })
-            if !@recycle.save
+            unless @recycle.save
               flash[:error] = @city.errors.full_messages
               redirect_to new_city_path
             end
@@ -53,10 +59,38 @@ class CitiesController < ApplicationController
       redirect_to city_path(@city)
 
     else
-      puts @city.errors.full_messages
-      puts @city.errors.inspect
       flash[:error] = @city.errors.full_messages
       redirect_to new_city_path
+    end
+  end
+
+  def update
+    @city = City.find_by_id(params[:id])
+    # @facilities = @city.facilities
+
+    if @city.update(permit_city)
+      puts params
+      Recycle.where(city_id: @city.id).delete_all
+
+      Category.all.each do |category|
+        params[:city][:recycle]["#{category.id}"].each do |subcategory_id|
+          if subcategory_id.present?
+            @recycle = Recycle.new({ :city_id => @city.id,
+                                     :subcategory_id => subcategory_id })
+            unless @recycle.save
+              flash[:error] = @city.errors.full_messages
+              redirect_to edit_city_path(@city)
+            end
+          end
+        end
+      end
+
+      flash[:success] = "Success!"
+      redirect_to city_path(@city)
+    else
+      puts @city.errors.full_messages
+      flash[:error] = @city.errors.full_messages
+      redirect_to edit_city_path(@city)
     end
   end
 
@@ -71,7 +105,6 @@ class CitiesController < ApplicationController
                                  :description,
                                  :image_link,
                                  {
-                                   recycle: [],
                                    files: [],
                                    city_contacts_attributes: [
                                      :id,
