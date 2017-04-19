@@ -27,6 +27,12 @@ $(document).ready ->
       if selectedCategories.length > 0
         selectedCategories.forEach((categoryId) ->
           $("#subcategory-selector-#{categoryId}").addClass('active'))
+
+      $('.subcategory-selector').each((index, e) ->
+        if not $(e).hasClass('active')
+          $(e).find('option').removeAttr("selected");
+      )
+      $(".chosen-select-subcategory").trigger('chosen:updated')
     )
 
   $(".chosen-select-subcategory")

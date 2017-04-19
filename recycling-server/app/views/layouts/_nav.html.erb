@@ -29,7 +29,7 @@
 
         <% if user_signed_in? %>
             <ul class="nav navbar-nav navbar-right" style="margin-right: 0">
-              <% if current_user.city_id == params[:id] %>
+              <% if current_user.city_id and current_user.city_id == params[:id] %>
               <li>
                 <button class="btn btn-primary" style="margin-top: 10px;">
                   <%= link_to('Edit Page', "/cities/#{params[:id]}/edit", :method => :get, :class => 'no-style') %>

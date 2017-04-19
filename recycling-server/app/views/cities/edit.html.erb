@@ -93,6 +93,10 @@
                     </thead>
                     <tbody>
                     <% @city.facilities.each_with_index do |facility, index| %>
+                        <input type="hidden"
+                               id='city_facilities_attributes_<%= index %>_id'
+                               name='city[facilities_attributes][<%= index %>][id]'
+                               value="<%= facility.id %>">
                         <tr id='facility-<%= index %>'>
                           <td><%= index + 1 %></td>
                           <td>
@@ -141,6 +145,10 @@
                     </thead>
                     <tbody>
                     <% @city.city_contacts.each_with_index do |contact, index| %>
+                    <input type="hidden"
+                           id='city_city_contacts_attributes_<%= index %>_id'
+                           name='city[city_contacts_attributes][<%= index %>][id]'
+                           value="<%= contact.id %>">
                     <tr id='contact-<%= index %>'>
                       <td><%= index + 1 %></td>
                       <td>

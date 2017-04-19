@@ -68,7 +68,23 @@ class CitiesController < ApplicationController
     @city = City.find_by_id(params[:id])
     # @facilities = @city.facilities
 
-    if @city.update(permit_city_update)
+    if @city.update(permit_city)
+      puts params
+      Recycle.where(city_id: @city.id).delete_all
+
+      Category.all.each do |category|
+        params[:city][:recycle]["#{category.id}"].each do |subcategory_id|
+          if subcategory_id.present?
+            @recycle = Recycle.new({ :city_id => @city.id,
+                                     :subcategory_id => subcategory_id })
+            unless @recycle.save
+              flash[:error] = @city.errors.full_messages
+              redirect_to edit_city_path(@city)
+            end
+          end
+        end
+      end
+
       flash[:success] = "Success!"
       redirect_to city_path(@city)
     else
@@ -101,18 +117,6 @@ class CitiesController < ApplicationController
                                      :street_address,
                                      :website
                                    ]
-                                 })
-  end
-
-  def permit_city_update
-    params.require(:city).permit(:name,
-                                 :state,
-                                 :zipcode,
-                                 :website,
-                                 :description,
-                                 :image_link,
-                                 {
-                                     files: [],
                                  })
   end
 end
