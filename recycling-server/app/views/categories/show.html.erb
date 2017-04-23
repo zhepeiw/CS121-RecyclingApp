@@ -7,6 +7,9 @@
       <h1 id="homeHeading"><%= @category.name %></h1>
       <hr>
       <div id="homeDescription"><%= @category.description %></div>
+      <% if @category.name == "Plastic" %>
+        <%= link_to "Learn more about plastic recycling grades", "http://www.plasgranltd.co.uk/cms/wp-content/uploads/2015/07/Plasgran-Guide-to-Plastic-Recycling-Grades.jpg" %>
+      <% end %>
     </div>
   </div>
 </header>
