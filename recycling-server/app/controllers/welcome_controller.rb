@@ -4,7 +4,11 @@ class WelcomeController < ApplicationController
   end
 
   def download
-    send_file params[:file],
-      :type => 'application/pdf'
+    if Rails.env.production?
+      redirect_to "https://s3.amazonaws.com/cs121-recycling-server-assets/#{params[:file]}"
+    else
+      send_file params[:file],
+                :type => 'application/pdf'
+    end
   end
 end
