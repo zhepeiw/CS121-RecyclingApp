@@ -84,6 +84,7 @@
 </section>
 
 <% if @filesJSON.size > 0 %>
+<section class="city-files-container">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
@@ -92,7 +93,8 @@
       </div>
     </div>
   </div>
-  <table class="table table-striped">
+  <div class="col-10 col-sm-10 col-md-10 col-offset-1 col-sm-offset-1 col-md-offset-1">
+    <table class="table table-striped">
       <thead>
       <tr>
         <th>#</th>
@@ -112,6 +114,7 @@
           </tr>
       <% end %>
     </table>
+  </div>
 </section>
 <% end %>
 
@@ -125,22 +128,24 @@
       </div>
     </div>
   </div>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Email/Phone</th>
-    </tr>
-    </thead>
-    <% @city.city_contacts.each_with_index do |contact, index| %>
-        <tr>
-          <th scope="row"><%= index + 1 %></th>
-          <td><%= contact.name %></td>
-          <td><%= contact.contact %></td>
-        </tr>
-    <% end %>
-  </table>
+  <div class="col-10 col-sm-8 col-md-6 col-offset-1 col-sm-offset-2 col-md-offset-3">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email/Phone</th>
+      </tr>
+      </thead>
+      <% @city.city_contacts.each_with_index do |contact, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= contact.name %></td>
+            <td><%= contact.contact %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
 </section>
 <% end %>
 
