@@ -3,7 +3,7 @@ class ProfileController < ApplicationController
 
   def show
     @city = nil
-    if current_user.city
+    if current_user.city_id
       @city = City.find_by_id(current_user.city_id)
     end
   end

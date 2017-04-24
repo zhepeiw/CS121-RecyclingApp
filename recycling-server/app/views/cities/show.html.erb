@@ -103,7 +103,11 @@
           <tr>
             <th scope="row"><%= i+1 %></th>
             <td>
+              <% if Rails.env.production? %>
+              <%= link_to @filesJSON[i].path.split('/')[-1], download_path(:file => @filesJSON[i].path) %>
+              <% else %>
               <%= link_to @filesJSON[i].file.file.split('/')[-1], download_path(:file => @filesJSON[i].file.file) %>
+              <% end %>
             </td>
           </tr>
       <% end %>

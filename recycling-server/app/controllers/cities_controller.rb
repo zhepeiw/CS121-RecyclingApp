@@ -11,7 +11,6 @@ class CitiesController < ApplicationController
   def show
     @city = City.find_by_id(params[:id])
     @categories = Category.all
-    @facilities = City.find_facilities_by_city(1)
     @filesJSON = @city.files
     @contributor = City.find_contributor_by_id(@city.id)
   end
@@ -39,7 +38,7 @@ class CitiesController < ApplicationController
 
     if @city.save
       # Update user city
-      current_user.update(city_id: @city.id)
+      current_user.update_attributes(city_id: @city.id)
 
       # Construct subcategories and save them to recycles
       Category.all.each do |category|
@@ -69,7 +68,6 @@ class CitiesController < ApplicationController
     # @facilities = @city.facilities
 
     if @city.update(permit_city)
-      puts params
       Recycle.where(city_id: @city.id).delete_all
 
       Category.all.each do |category|
