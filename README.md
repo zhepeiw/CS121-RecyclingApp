@@ -1,12 +1,17 @@
-## CS121-RecyclingApp
+## CS121-RecyclingApp - Recico
 
-### Production URL:
+Recico is a web-based, mobile-compatible application that aggregates and displays local recycling information. 
+
+The goal of the application is to make the process of finding out what can be recycled where as easy as possible, so that even people without particular dedication to the cause of recycling will look up the information and separate their trash. 
+
+#### Production URL:
 
 - Symbolic: http://recycle.cameric.cn
 - Original: http://recyclingapp.us-east-1.elasticbeanstalk.com/ 
 
+### Installation
 
-### Prerequisite
+#### Prerequisite
 
 To successfully set up the server, 
 you need to install Docker and 
@@ -14,27 +19,38 @@ Docker-compose on your host machine.
 Personally I recommend using the 
 packaged app like Docker for Mac or
 Docker for Windows instead of building
-from source.
+from source. 
 
+Links to related websites:
 
-### Installation
+  - [Docker](https://www.docker.com/)
+  - [Docker Compose](https://docs.docker.com/compose/)
+  - [Docker For Mac](https://www.docker.com/docker-mac)
+    - Note: according to Docker best practices, you should only allow certain mount points that contain your source.
+      This can be done through the `File Sharing` tab in Docker for Mac preferences. Check [this page](https://docs.docker.com/docker-for-mac/osxfs/)
+      for more details.
+      
+After you successfully install Docker on your computer, clone this repo.
+If you use Docker for Mac, move the repo directory into a valid mount point directory
+(default to be `~`).
 
 #### Create env file
 
 Before you do anything, you **MUST** complete this step:
 
-In the root directory (suppose `CS121-RecyclingApp`) create this file:
+In the root directory of the repo (suppose `CS121-RecyclingApp/`), create this file:
 
 ```
 .env
 ```
 
+you can create it with the `touch` command. 
 This file will store your own environment variables and you must
-have it to run compose up.
+have it in order to run compose up.
 
 #### Start containers
 
-In the root directory, run
+In the root directory of the repo, run
 
 ```bash
 $ docker-compose up
@@ -43,14 +59,14 @@ $ docker-compose up
 This should set up both containers
 for the server and the MySQL database.
 After the containers finish setting up,
-you shoule access the server through
+you should be able to access the server through
 `http://localhost:3000` normally in 
 your browser.
 
 After you make changes in the `recycling-server`
 directory, the change will be automatically
 sync-ed into the container, and rails
- will update the content according (it 
+ will update the content accordingly (it 
 has a built-in file watcher), so you 
 shouldn't need to restart the container 
 except for adding gems (explained below).
@@ -61,6 +77,8 @@ but keep the images, run
 ```bash
 $ docker-compose down
 ```
+
+or `CTRL+C` if you are in the interactive log session. 
 
 #### [Optional] Get rid of the `Cannot render console` warning
 
@@ -86,12 +104,23 @@ where `IP` is the ip address shown above in the error message.
 After this, restarting your containers `down and up`
 and the error should go away.
 
+### Usage
+
+#### Useful Docker commands
+
+Note: all `docker` commands could
+be run at **any place** in the terminal.
+However, `docker-compose` commands
+could only run in a directory that
+contains `docker-compose.yml`, i.e.
+the root of this repository.
+
 If you want to access the Rails 
 container (a basic Ubuntu shell),
 run
 
 ```
-$ docker exec -it recycling-server /bin/bash
+$ docker exec -it recycling-server /bin/bash (for mac)
 $ winpty docker exec -it recycling-server bash (for windows)
 ```
 
@@ -103,37 +132,55 @@ run
 $ docker logs -f recycling-server
 ```
 
-Note: all `docker` commands could
-be run at **any place** in the shell.
-However, `docker-compose` commands
-could only run in a directyory that
-contains `docker-compose.yml`, i.e.
-the root of this repository.
+Kill a running container and remove its instance:
 
-### Add Gem
+```
+$ docker stop recycling-server && docker rm -v recycling-server
+```
+
+See all containers (both running and idle):
+
+```
+$ docker ps -a
+```
+
+#### Add Gem
 
 If you want to add a new Gem,
 currently you need to do three steps:
-  - add the Gem into `Gemfile`
+  - add the Gem into `Gemfile` normally
   - access the Rails container using the command above
   - check that you are in `/srv/server` directory and run `bundle install`
   - [optional]: restart the container
 
   
 Note: running `gem install xxx` 
-on your host machine will **NOT** work!
+on your host machine will **NOT** work because 
+your server does not run on your computer!
 
-Note2: Tony will look into ways (e.g. file watchers) that 
-effectively run `bundle install` by itself everytime
-you change the Gemfile.
-
-### DB Migrations
+#### DB Migrations
 
 In development environment, `docker-compose` will call
-`bin/rake db:migrate` every time we start the server container.
+`bin/rake db:migrate && bin/rake db:seed` every time we start the server container.
 Therefore if you add a new migration to the system, 
 you could do either of the two methods below:
 
-- Stop and restart the server, which triggers the automatic migratiob
+- Stop and restart the server, which triggers the automatic migration and seed
 - Enter into the container using the method shown above and run `bin/rake db:migrate`
   inside. In that case you don't need to restart the container.
+
+### Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
+
+### Credits
+
+CS121 Recico Team - Yulang Wang, Zhepei Wang, Zhenghan Zhang and Weiyu Zhou
+
+### License
+
+MIT License
