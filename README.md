@@ -34,6 +34,11 @@ After you successfully install Docker on your computer, clone this repo.
 If you use Docker for Mac, move the repo directory into a valid mount point directory
 (default to be `~`).
 
+#### Add repository to docker path
+
+In Docker Preferences -> Shared Drives, add the path to the parent directory of your repository. (Mac)
+In Docker Settings -> Shared Drives, add C drive. (Windows)
+
 #### Create env file
 
 Before you do anything, you **MUST** complete this step:
@@ -77,6 +82,7 @@ but keep the images, run
 ```bash
 $ docker-compose down
 ```
+This works for any terminal or bash window.
 
 or `CTRL+C` if you are in the interactive log session. 
 
@@ -176,6 +182,19 @@ you could do either of the two methods below:
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
+
+### Known Issues and Limitations
+1. Only new city can be added, not new categories.
+2. Links on top of city page doesn't work.
+3. Link for contribution in the search result page is not very visible.
+4. Some developer API not implemented. 
+5. No error handling and no form checking page for create new cities (name, facility is minimum required). 
+6. When adding new city, there is a possible bug where if facility name and address pair is a duplicate, it will fail. 
+7. City information page displays all categories regardless of whether city can recycle anything from this category.
+8. One account can only create and manage one city.
+
+### ci folder
+This is a folder for continuously deploying the app. If you fork the project, you will have you setup CircleCI on the new repository.
 
 ### Credits
 
